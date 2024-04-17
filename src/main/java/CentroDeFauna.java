@@ -1,6 +1,9 @@
 import com.chiquitos11.veterinaria.controller.ControllerVeterinaria;
 import com.chiquitos11.veterinaria.view.Veterinaria;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 /**
  *
@@ -18,8 +21,11 @@ public class CentroDeFauna {
                 
 
                 v.setVisible(true);
-                v.setResizable(true);
+                v.setResizable(false);
                 v.setLocationRelativeTo(null);
+                
+                Border bordePersonalizado = BorderFactory.createLineBorder(Color.BLACK, 3);
+                v.getRootPane().setBorder(bordePersonalizado);
             }
         });
     }

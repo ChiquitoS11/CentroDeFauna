@@ -11,8 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /**
@@ -23,6 +21,9 @@ public class ControllerVeterinaria implements KeyListener {
     
     private Veterinaria v;
     private UTILPersonaje p;
+    UTILImagen upP = new UTILImagen(getClass().getResource("/resources/up.gif"));
+    UTILImagen downP = new UTILImagen(getClass().getResource("/resources/down.gif"));
+    UTILImagen leftP = new UTILImagen(getClass().getResource("/resources/left.gif"));
     UTILImagen rightP = new UTILImagen(getClass().getResource("/resources/right.gif"));
     UTILImagen staticP = new UTILImagen(getClass().getResource("/resources/static.png"));
     
@@ -32,69 +33,133 @@ public class ControllerVeterinaria implements KeyListener {
         this.v = v;
         this.p = new UTILPersonaje(v, v.personajeLABEL);
         v.addKeyListener(this);
+        
     }
     
     public void moverPersonaje() {
         
     }
 
-
+    
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode()==KeyEvent.VK_W) {
+        if (e.getKeyCode() == KeyEvent.VK_W) {
             p.moverArriba();
-            
-        }
-        if (e.getKeyCode()==KeyEvent.VK_S) {
-            p.moverAbajo();
-            
-        }
-        if (e.getKeyCode()==KeyEvent.VK_A) {
-            p.moverIzquierda();
-        }
-        if (e.getKeyCode()==KeyEvent.VK_D) {
-            p.moverDerecha();
-
             if (cargo == false) {
-                gifts();
+                sprayMovimiento(1);
             }
-            
         }
-        
+        if (e.getKeyCode() == KeyEvent.VK_S) {
+            p.moverAbajo();
+            if (cargo == false) {
+                sprayMovimiento(2);
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_A) {
+            p.moverIzquierda();
+            if (cargo == false) {
+                sprayMovimiento(3);
+            }
+        }
+        if (e.getKeyCode() == KeyEvent.VK_D) {
+            p.moverDerecha();
+            if (cargo == false) {
+                sprayMovimiento(4);
+            }
+        }
+
     }
     
+    
+    
+    
+    
+
+    /*
+    * No tocar, la clase es un implements de key event
+    * por lo que necesitamos este metodo pero en realidad no lo usamos nunca
+    */
+    @Override
+    public void keyTyped(KeyEvent e) {}
+    
+    /*
+    * Este metodo esta encargado ed realizar los sprays del personaje, 
+    * recordemos que el 'personaje' es un JLabel al que se le va cambiando el setIcon
+    * este metodo es único y no esta permitido editarlo.
+    */
     boolean cargo = false;
-    private void gifts() {
-        Timer timer = new Timer(0, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Acciones a realizar después de 1 segundo
-                v.personajeLABEL.setIcon(rightP.imgToContainer(v.personajeLABEL));
-                cargo = true;
-                ((Timer) e.getSource()).stop(); // Detener el temporizador después de 1 segundo
-            }
-        });
-        timer.setRepeats(true); // Configurar el temporizador para que no se repita
-        timer.start(); // Iniciar el temporizador
-        
+    
+    private void sprayMovimiento(int direccion) {
+        switch (direccion) {
+            case 1:
+                Timer timer1 = new Timer(0, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // Acciones a realizar después de 1 segundo
+                        v.personajeLABEL.setIcon(upP.getIconToContainer(v.personajeLABEL));
+                        cargo = true;
+                        ((Timer) e.getSource()).stop();
+                    }
+                });
+                timer1.start(); 
+                break;
+            case 2:
+                Timer timer2 = new Timer(0, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        v.personajeLABEL.setIcon(downP.getIconToContainer(v.personajeLABEL));
+                        cargo = true;
+                        ((Timer) e.getSource()).stop(); 
+                    }
+                });
+                timer2.start();
+                break;
+            case 3:
+                Timer timer3 = new Timer(0, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        v.personajeLABEL.setIcon(leftP.getIconToContainer(v.personajeLABEL));
+                        cargo = true;
+                        ((Timer) e.getSource()).stop();
+                    }
+                });
+                timer3.start(); 
+                break;
+            case 4:
+                Timer timer4 = new Timer(0, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        v.personajeLABEL.setIcon(rightP.getIconToContainer(v.personajeLABEL));
+                        cargo = true;
+                        ((Timer) e.getSource()).stop(); 
+                    }
+                });
+                timer4.start(); 
+                break;
+        }
+
         Timer timerdos = new Timer(0, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 cargo = false;
-                ((Timer) e.getSource()).stop(); // Detener el temporizador después de 1 segundo
+                ((Timer) e.getSource()).stop();
             }
         });
         timerdos.setInitialDelay(600);
-        timerdos.setRepeats(true); // Configurar el temporizador para que no se repita
-        timerdos.start(); // Iniciar el temporizador
+        timerdos.setRepeats(true); 
+        timerdos.start(); 
     }
     
-    @Override
-    public void keyTyped(KeyEvent e) {}
+    /*
+    * Otro metodo único que trabaja en conjunto del srayMovimiento
+    * No está permitida la edición.
+    */
     @Override
     public void keyReleased(KeyEvent e) {
-        v.personajeLABEL.setIcon(staticP.imgToContainer(v.personajeLABEL));
+        v.personajeLABEL.setIcon(staticP.getIconToContainer(v.personajeLABEL));
     }
 }

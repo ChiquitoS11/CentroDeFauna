@@ -12,6 +12,7 @@ import java.net.URL;
 import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -62,7 +63,21 @@ public class UTILImagen extends JPanel {
         g.drawImage(imagenIMAGE, 0, 0, getWidth(), getHeight(), this);
     }
     
-    public Icon imgToContainer(Component jLabel){
+    public void imgToContainer(Component actual) {
+        
+        
+        JLabel nuevoLabel = null;
+        if (actual instanceof JLabel) {
+            Icon icon = new ImageIcon(imagenImageIcon.getImage().getScaledInstance(actual.getWidth(), actual.getHeight(), Image.SCALE_DEFAULT));
+
+            nuevoLabel = (JLabel) actual;
+            nuevoLabel.setIcon(icon);
+        }
+        
+                
+    }
+    
+    public Icon getIconToContainer(Component jLabel) {
         Icon icon = new ImageIcon(imagenImageIcon.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), Image.SCALE_DEFAULT));
         return icon;
     }
@@ -89,7 +104,6 @@ public class UTILImagen extends JPanel {
     }
     
     public Icon cambiarOpacidad(float opacidad, Component actual) {
-
         Image image = null; // Variable para almacenar la imagen
         
         if (actual instanceof AbstractButton) {
