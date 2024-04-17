@@ -16,8 +16,11 @@ public class CentroDeFauna {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Veterinaria v = new Veterinaria();
-                ControllerVeterinaria c = new ControllerVeterinaria(v);
+                
+                // declaramos el frame principal donde estará todo
+                Veterinaria v = new Veterinaria(); // esto solo es la interfaz
+                ControllerVeterinaria c = new ControllerVeterinaria(v); // creamos y asignamos un controlador logico encargado de todo lo relacionado a programacion
+                
                 
 
                 v.setVisible(true);
