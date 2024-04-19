@@ -1,4 +1,4 @@
-package com.chiquitos11.veterinaria.model;
+package com.chiquitos11.veterinaria.deependency;
 
 import java.awt.AlphaComposite;
 import java.awt.Component;

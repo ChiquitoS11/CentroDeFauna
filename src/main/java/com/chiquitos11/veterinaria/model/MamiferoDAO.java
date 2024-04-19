@@ -2,16 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.chiquitos11.veterinaria.controller;
-
-import com.chiquitos11.veterinaria.view.Administracion;
+package com.chiquitos11.veterinaria.model;
 
 /**
  *
- * @author ChiquitoS11
+ * @author Alumno
  */
-public class ControllerAdministracion {
-    private Administracion adm;
-    
+public class MamiferoDAO {
     
 }

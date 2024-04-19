@@ -4,14 +4,25 @@
  */
 package com.chiquitos11.veterinaria.controller;
 
-import com.chiquitos11.veterinaria.view.Administracion;
+import com.chiquitos11.veterinaria.model.BBDD;
 
 /**
  *
- * @author ChiquitoS11
+ * @author Alumno
  */
-public class ControllerAdministracion {
-    private Administracion adm;
+public class ControllerBBDD {
     
+    private BBDD db;
     
+    public ControllerBBDD() {
+        
+        db = new BBDD();
+    
+    }
+    
+    public void DarAlta() {
+    
+        
+        
+    }
 }

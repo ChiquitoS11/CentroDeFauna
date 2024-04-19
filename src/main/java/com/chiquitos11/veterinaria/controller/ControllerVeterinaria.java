@@ -4,8 +4,9 @@
  */
 package com.chiquitos11.veterinaria.controller;
 
-import com.chiquitos11.veterinaria.model.UTILImagen;
-import com.chiquitos11.veterinaria.model.UTILPersonaje;
+import com.chiquitos11.veterinaria.deependency.UTILImagen;
+import com.chiquitos11.veterinaria.deependency.UTILPersonaje;
+import com.chiquitos11.veterinaria.view.Administracion;
 import com.chiquitos11.veterinaria.view.Veterinaria;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
@@ -23,6 +25,7 @@ public class ControllerVeterinaria {
 
     private Veterinaria v;
     private UTILPersonaje p;
+    boolean animacionEnd = false;
     UTILImagen upP = new UTILImagen(getClass().getResource("/resources/up.gif"));
     UTILImagen downP = new UTILImagen(getClass().getResource("/resources/down.gif"));
     UTILImagen leftP = new UTILImagen(getClass().getResource("/resources/left.gif"));
@@ -56,8 +59,11 @@ public class ControllerVeterinaria {
         v.addKeyListener(pKeyListener);
         v.addKeyListener(pInteraccion);
 
+        
         p.addLimites(v.jPanel1);
         p.addLimites(v.jPanel2);
+        
+        
         p.addInteracciones(v.enfermera1);
         p.addInteracciones(v.enfermera2);
         p.addInteracciones(v.enfermera3);
@@ -87,11 +93,17 @@ public class ControllerVeterinaria {
                     break;
                 
                 case "enfermeraJoy":
-                    System.out.println("enfermera Joy");
-                    JOptionPane.showMessageDialog(null, "Dar de alta y toda esa cosa");
+                    
+                    Administracion ad = new Administracion();
+                    ad.setVisible(true);
+                    ad.setResizable(false);
+                    ad.setLocationRelativeTo(null);
+//                    v.setEnabled(false);
+                    ad.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    
                     break;
                 default:
-                    System.out.println("no hay interaccion");
+                    System.out.println("no hay logica de JLabel (zona interactuable) para esta zona");
                     break;
             }
         }
@@ -105,25 +117,25 @@ public class ControllerVeterinaria {
     public void moverPersonaje(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_W) {
             p.movimiento(1);
-            if (cargo == false) {
+            if (animacionEnd == false) {
                 sprayMovimiento(1);
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_S) {
             p.movimiento(2);
-            if (cargo == false) {
+            if (animacionEnd == false) {
                 sprayMovimiento(2);
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_A) {
             p.movimiento(3);
-            if (cargo == false) {
+            if (animacionEnd == false) {
                 sprayMovimiento(3);
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_D) {
             p.movimiento(4);
-            if (cargo == false) {
+            if (animacionEnd == false) {
                 sprayMovimiento(4);
             }
         }
@@ -133,7 +145,6 @@ public class ControllerVeterinaria {
      * recordemos que el 'personaje' es un JLabel al que se le va cambiando el
      * setIcon este metodo es único y no esta permitido editarlo.
      */
-    boolean cargo = false;
 
     private void sprayMovimiento(int direccion) {
         switch (direccion) {
@@ -143,7 +154,7 @@ public class ControllerVeterinaria {
                     public void actionPerformed(ActionEvent e) {
                         // Acciones a realizar después de 1 segundo
                         v.personajeLABEL.setIcon(upP.getIconToContainer(v.personajeLABEL));
-                        cargo = true;
+                        animacionEnd = true;
                         ((Timer) e.getSource()).stop();
                     }
                 });
@@ -155,7 +166,7 @@ public class ControllerVeterinaria {
                     public void actionPerformed(ActionEvent e) {
 
                         v.personajeLABEL.setIcon(downP.getIconToContainer(v.personajeLABEL));
-                        cargo = true;
+                        animacionEnd = true;
                         ((Timer) e.getSource()).stop();
                     }
                 });
@@ -166,7 +177,7 @@ public class ControllerVeterinaria {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         v.personajeLABEL.setIcon(leftP.getIconToContainer(v.personajeLABEL));
-                        cargo = true;
+                        animacionEnd = true;
                         ((Timer) e.getSource()).stop();
                     }
                 });
@@ -178,7 +189,7 @@ public class ControllerVeterinaria {
                     public void actionPerformed(ActionEvent e) {
 
                         v.personajeLABEL.setIcon(rightP.getIconToContainer(v.personajeLABEL));
-                        cargo = true;
+                        animacionEnd = true;
                         ((Timer) e.getSource()).stop();
                     }
                 });
@@ -190,7 +201,7 @@ public class ControllerVeterinaria {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                cargo = false;
+                animacionEnd = false;
                 ((Timer) e.getSource()).stop();
             }
         });

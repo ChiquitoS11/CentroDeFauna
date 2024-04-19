@@ -4,14 +4,13 @@ com\chiquitos11\veterinaria\controller\ControllerVeterinaria.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$2.class
 com\chiquitos11\veterinaria\model\Animal.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$7.class
-com\chiquitos11\veterinaria\model\UTILPersonaje.class
 CentroDeFauna.class
 com\chiquitos11\veterinaria\view\Administracion.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$5.class
 com\chiquitos11\veterinaria\model\Gravedad.class
-com\chiquitos11\veterinaria\model\UTILImagen.class
 com\chiquitos11\veterinaria\view\Veterinaria.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$3.class
+com\chiquitos11\veterinaria\deependency\UTILImagen.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion.class
 com\chiquitos11\veterinaria\model\BBDD.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$6.class
@@ -21,4 +20,5 @@ com\chiquitos11\veterinaria\model\Ave.class
 ColisionJPanel.class
 CentroDeFauna$1.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$1.class
+com\chiquitos11\veterinaria\deependency\UTILPersonaje.class
 ColisionJPanel$1.class
