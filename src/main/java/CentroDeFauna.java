@@ -11,7 +11,7 @@ import javax.swing.border.Border;
  */
 public class CentroDeFauna {
 
-    public static void main(String[] args) {
+public static void main(String[] args) {
         
         SwingUtilities.invokeLater(new Runnable() {
             @Override
