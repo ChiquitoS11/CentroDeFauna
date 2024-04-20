@@ -1,6 +1,7 @@
 package com.chiquitos11.veterinaria.view;
 
 import com.chiquitos11.veterinaria.deependency.UTILImagen;
+import com.sun.tools.javac.Main;
 
 /**
  *
@@ -8,8 +9,8 @@ import com.chiquitos11.veterinaria.deependency.UTILImagen;
  */
 public class Veterinaria extends javax.swing.JFrame {
 
-    UTILImagen fp = new UTILImagen(getClass().getResource("/resources/CentroPokemon.jpeg"));
-    UTILImagen IMGpersonaje = new UTILImagen(getClass().getResource("/resources/static.png"));
+    UTILImagen fp = new UTILImagen(Main.class.getClassLoader().getResource("CentroPokemon.jpeg"));
+    UTILImagen IMGpersonaje = new UTILImagen(Main.class.getClassLoader().getResource("static.png"));
     
     /**
      * Creates new form Veterinaria
@@ -100,8 +101,8 @@ public class Veterinaria extends javax.swing.JFrame {
                 .addComponent(enfermera1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(243, 243, 243)
                 .addComponent(enfermera2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
-                .addComponent(enfermera3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(enfermera3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
@@ -139,8 +140,8 @@ public class Veterinaria extends javax.swing.JFrame {
                                 .addGap(182, 182, 182)))
                         .addComponent(personajeLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(enfermera3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(enfermera3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 

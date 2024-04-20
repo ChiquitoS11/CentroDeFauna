@@ -1,5 +1,11 @@
 package com.chiquitos11.veterinaria.view;
 
+import com.chiquitos11.veterinaria.model.BBDD;
+import com.chiquitos11.veterinaria.model.Reptil;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 
 
@@ -42,7 +48,19 @@ public class Administracion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    public void meow(){
+        BBDD db = new BBDD();
+        Reptil rep = new Reptil();
+        
+        
+        try {
+            db.darAlta(rep);
+            db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
+        } catch (SQLException ex) {
+            Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

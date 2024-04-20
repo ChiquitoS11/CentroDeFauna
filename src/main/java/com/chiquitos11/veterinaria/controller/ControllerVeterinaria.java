@@ -8,6 +8,7 @@ import com.chiquitos11.veterinaria.deependency.UTILImagen;
 import com.chiquitos11.veterinaria.deependency.UTILPersonaje;
 import com.chiquitos11.veterinaria.view.Administracion;
 import com.chiquitos11.veterinaria.view.Veterinaria;
+import com.sun.tools.javac.Main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -26,11 +27,11 @@ public class ControllerVeterinaria {
     private Veterinaria v;
     private UTILPersonaje p;
     boolean animacionEnd = false;
-    UTILImagen upP = new UTILImagen(getClass().getResource("/resources/up.gif"));
-    UTILImagen downP = new UTILImagen(getClass().getResource("/resources/down.gif"));
-    UTILImagen leftP = new UTILImagen(getClass().getResource("/resources/left.gif"));
-    UTILImagen rightP = new UTILImagen(getClass().getResource("/resources/right.gif"));
-    UTILImagen staticP = new UTILImagen(getClass().getResource("/resources/static.png"));
+    UTILImagen upP = new UTILImagen(Main.class.getClassLoader().getResource("up.gif"));
+    UTILImagen downP = new UTILImagen(Main.class.getClassLoader().getResource("down.gif"));
+    UTILImagen leftP = new UTILImagen(Main.class.getClassLoader().getResource("left.gif"));
+    UTILImagen rightP = new UTILImagen(Main.class.getClassLoader().getResource("right.gif"));
+    UTILImagen staticP = new UTILImagen(Main.class.getClassLoader().getResource("static.png"));
     final KeyListener pKeyListener = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {

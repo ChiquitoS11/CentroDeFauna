@@ -16,7 +16,7 @@ import java.sql.Statement;
 public class Conexion {
     Connection c = null;
 
-    String urlConnection = "jdbc:mysql://localhost:3306/animales"; // CREAR LA BASE DATOS YA
+    String urlConnection = "jdbc:mysql://localhost:3306/veterinaria"; // CREAR LA BASE DATOS YA
     String user = "root";
     String password = "";
     
