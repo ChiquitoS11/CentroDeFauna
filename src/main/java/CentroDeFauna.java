@@ -1,4 +1,5 @@
 import com.chiquitos11.veterinaria.controller.ControllerVeterinaria;
+import com.chiquitos11.veterinaria.view.Administracion;
 import com.chiquitos11.veterinaria.view.Veterinaria;
 import java.awt.Color;
 import javax.swing.BorderFactory;
@@ -20,7 +21,8 @@ public static void main(String[] args) {
                 // declaramos el frame principal donde estará todo
                 Veterinaria v = new Veterinaria(); // esto solo es la interfaz
                 ControllerVeterinaria c = new ControllerVeterinaria(v); // creamos y asignamos un controlador logico encargado de todo lo relacionado a programacion
-
+                Administracion ad = new Administracion();
+                ad.meow();
                 
 
                 v.setVisible(true);

@@ -1,8 +1,14 @@
 package com.chiquitos11.veterinaria.view;
 
-import com.chiquitos11.veterinaria.model.BBDD;
-import com.chiquitos11.veterinaria.model.Reptil;
+import com.chiquitos11.veterinaria.controller.ControllerBBDD;
+import com.chiquitos11.veterinaria.enums.Gravedad;
+import com.chiquitos11.veterinaria.enums.MotivoSalida;
+import com.chiquitos11.veterinaria.enums.TipoAnimal;
+import com.chiquitos11.veterinaria.model.Ave;
+
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,14 +54,16 @@ public class Administracion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    // METER A CONTROLLERADMINISTRACION
     public void meow(){
-        BBDD db = new BBDD();
-        Reptil rep = new Reptil();
+        ControllerBBDD db = new ControllerBBDD();
+        Ave a = new Ave("zxczxvzx", "KIKI", "curarle", LocalDate.now(), TipoAnimal.Ave, 13.23, Gravedad.HIGH, LocalDate.now(), MotivoSalida.MUERTE, "CARLOS", false);
         
         
         try {
-            db.darAlta(rep);
-            db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
+            db.darAlta(a);
+//            db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
         } catch (SQLException ex) {
             Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
         }

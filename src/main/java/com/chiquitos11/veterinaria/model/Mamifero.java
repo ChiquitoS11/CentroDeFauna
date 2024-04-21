@@ -1,5 +1,8 @@
 package com.chiquitos11.veterinaria.model;
 
+import com.chiquitos11.veterinaria.enums.Gravedad;
+import com.chiquitos11.veterinaria.enums.MotivoSalida;
+import com.chiquitos11.veterinaria.enums.TipoAnimal;
 import java.time.LocalDate;
 
 /**
@@ -9,8 +12,8 @@ import java.time.LocalDate;
 public class Mamifero extends Animal {
     boolean atropello;
 
-    public Mamifero(String DNI, String nombre, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, LocalDate fechaMuerte, String veterinario, boolean atropello) {
-        super(DNI, nombre, fechaEntrada, tipoAnimal, peso, gravedad, fechaMuerte, veterinario);
+    public Mamifero(String DNI, String nombre, String tratamiento, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, LocalDate fechaSalida, MotivoSalida motivoSalida, String veterinario, boolean atropello) {
+        super(DNI, nombre, tratamiento, fechaEntrada, tipoAnimal, peso, gravedad, fechaSalida, motivoSalida, veterinario);
         this.atropello = atropello;
     }
 

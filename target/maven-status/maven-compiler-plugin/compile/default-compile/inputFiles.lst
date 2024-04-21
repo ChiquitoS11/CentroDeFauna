@@ -1,8 +1,10 @@
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\model\AveDAO.java
+E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\enums\Gravedad.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\model\MamiferoDAO.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\model\Reptil.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\deependency\UTILPersonaje.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\CentroDeFauna.java
+E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\enums\TipoAnimal.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\model\Conexion.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\model\Mamifero.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\controller\ControllerAdministracion.java
@@ -11,7 +13,7 @@ E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\con
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\model\Animal.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\controller\ControllerBBDD.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\deependency\UTILImagen.java
-E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\model\BBDD.java
+E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\enums\MotivoSalida.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\model\Ave.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\view\Veterinaria.java
 E:\Programacion\Java\CentroDeFauna\src\main\java\com\chiquitos11\veterinaria\view\Administracion.java
