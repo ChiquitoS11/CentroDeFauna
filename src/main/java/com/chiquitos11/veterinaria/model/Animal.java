@@ -23,7 +23,7 @@ public class Animal {
     private String veterinario;
     
     
-    public Animal(String DNI, String nombre, String tratamiento, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, LocalDate fechaSalida, MotivoSalida motivoSalida, String veterinario) {
+    public Animal(String DNI, String nombre, String tratamiento, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.tratamiento = tratamiento;
@@ -31,9 +31,6 @@ public class Animal {
         this.tipoAnimal = tipoAnimal;
         this.peso = peso;
         this.gravedad = gravedad;
-        this.fechaSalida = fechaSalida;
-        this.motivoSalida = motivoSalida;
-        this.veterinario = veterinario;
     }
 
     public String getDNI() {

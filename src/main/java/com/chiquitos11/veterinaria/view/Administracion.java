@@ -58,7 +58,7 @@ public class Administracion extends javax.swing.JFrame {
     // METER A CONTROLLERADMINISTRACION
     public void meow(){
         ControllerBBDD db = new ControllerBBDD();
-        Ave a = new Ave("zxczxvzx", "KIKI", "curarle", LocalDate.now(), TipoAnimal.Ave, 13.23, Gravedad.HIGH, LocalDate.now(), MotivoSalida.MUERTE, "CARLOS", false);
+        Ave a = new Ave("zxczxvzx", "KIKI", "curarle", LocalDate.now(), TipoAnimal.Ave, 13.23, Gravedad.HIGH, false);
         
         
         try {

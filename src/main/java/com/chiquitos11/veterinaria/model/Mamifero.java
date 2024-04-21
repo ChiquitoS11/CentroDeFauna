@@ -12,8 +12,8 @@ import java.time.LocalDate;
 public class Mamifero extends Animal {
     boolean atropello;
 
-    public Mamifero(String DNI, String nombre, String tratamiento, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, LocalDate fechaSalida, MotivoSalida motivoSalida, String veterinario, boolean atropello) {
-        super(DNI, nombre, tratamiento, fechaEntrada, tipoAnimal, peso, gravedad, fechaSalida, motivoSalida, veterinario);
+    public Mamifero(String DNI, String nombre, String tratamiento, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, boolean atropello) {
+        super(DNI, nombre, tratamiento, fechaEntrada, tipoAnimal, peso, gravedad);
         this.atropello = atropello;
     }
 
