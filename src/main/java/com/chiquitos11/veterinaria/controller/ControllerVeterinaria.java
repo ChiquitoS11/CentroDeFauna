@@ -95,12 +95,15 @@ public class ControllerVeterinaria {
                 
                 case "enfermeraJoy":
                     
-                    Administracion ad = new Administracion();
+                    // declaramos el frame principal donde estará todo lo relacionado al alta y baja
+                    Administracion ad = new Administracion(v, true); // esto solo es la interfaz
+                    ControllerAdministracion cAd = new ControllerAdministracion(ad); // creamos y asignamos un controlador logico encargado de todo lo relacionado a programacion
+
                     ad.setVisible(true);
                     ad.setResizable(false);
                     ad.setLocationRelativeTo(null);
-//                    v.setEnabled(false);
-                    ad.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    v.setEnabled(false);
+//                    ad.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                     
                     break;
                 default:

@@ -4,6 +4,7 @@ import com.chiquitos11.veterinaria.enums.Gravedad;
 import com.chiquitos11.veterinaria.enums.MotivoSalida;
 import com.chiquitos11.veterinaria.enums.TipoAnimal;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 /**
  *

@@ -20,10 +20,7 @@ public static void main(String[] args) {
                 
                 // declaramos el frame principal donde estará todo
                 Veterinaria v = new Veterinaria(); // esto solo es la interfaz
-                ControllerVeterinaria c = new ControllerVeterinaria(v); // creamos y asignamos un controlador logico encargado de todo lo relacionado a programacion
-                Administracion ad = new Administracion();
-                ad.meow();
-                
+                ControllerVeterinaria cV = new ControllerVeterinaria(v); // creamos y asignamos un controlador logico encargado de todo lo relacionado a programacion
 
                 v.setVisible(true);
                 v.setResizable(false);

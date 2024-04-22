@@ -2,30 +2,25 @@ package com.chiquitos11.veterinaria.view;
 
 import com.chiquitos11.veterinaria.controller.ControllerBBDD;
 import com.chiquitos11.veterinaria.enums.Gravedad;
-import com.chiquitos11.veterinaria.enums.MotivoSalida;
 import com.chiquitos11.veterinaria.enums.TipoAnimal;
 import com.chiquitos11.veterinaria.model.Ave;
-
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-
-
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ChiquitoS11
  */
-public class Administracion extends javax.swing.JFrame {
+public class Administracion extends javax.swing.JDialog {
 
     /**
-     * Creates new form Administracion
+     * Creates new form NewJDialog
      */
-    public Administracion() {
+    public Administracion(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -38,7 +33,7 @@ public class Administracion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -54,7 +49,6 @@ public class Administracion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     // METER A CONTROLLERADMINISTRACION
     public void meow(){
         ControllerBBDD db = new ControllerBBDD();
@@ -63,12 +57,17 @@ public class Administracion extends javax.swing.JFrame {
         
         try {
             db.darAlta(a);
-//            db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
+         // db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
+        } catch (CommunicationsException e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
+        } catch (SQLIntegrityConstraintViolationException e) {
+            JOptionPane.showMessageDialog(null, "Un animal ya ha sido registrado con ese DNI, verifique los datos.");
         } catch (SQLException ex) {
-            Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
+            System.out.println("Error: " + ex.getMessage());
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
