@@ -16,7 +16,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
@@ -63,6 +62,15 @@ public class ControllerVeterinaria {
         
         p.addLimites(v.jPanel1);
         p.addLimites(v.jPanel2);
+        p.addLimites(v.jPanel3);
+        p.addLimites(v.jPanel4);
+        p.addLimites(v.jPanel5);
+        p.addLimites(v.jPanel6);
+        p.addLimites(v.jPanel7);
+        p.addLimites(v.jPanel8);
+        p.addLimites(v.jPanel9);
+        p.addLimites(v.jPanel10);
+        p.addLimites(v.jPanel11);
         
         
         p.addInteracciones(v.enfermera1);
@@ -90,7 +98,7 @@ public class ControllerVeterinaria {
                     
                 case "enfermera3":
                     System.out.println("enfermera 3");
-                    JOptionPane.showMessageDialog(null, "Rodri es maricon");
+                    JOptionPane.showMessageDialog(null, "i miss her");
                     break;
                 
                 case "enfermeraJoy":
@@ -100,10 +108,7 @@ public class ControllerVeterinaria {
                     ControllerAdministracion cAd = new ControllerAdministracion(ad); // creamos y asignamos un controlador logico encargado de todo lo relacionado a programacion
 
                     ad.setVisible(true);
-                    ad.setResizable(false);
-                    ad.setLocationRelativeTo(null);
-                    v.setEnabled(false);
-//                    ad.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
                     
                     break;
                 default:

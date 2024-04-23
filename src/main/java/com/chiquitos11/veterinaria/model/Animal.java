@@ -4,7 +4,6 @@ import com.chiquitos11.veterinaria.enums.Gravedad;
 import com.chiquitos11.veterinaria.enums.MotivoSalida;
 import com.chiquitos11.veterinaria.enums.TipoAnimal;
 import java.time.LocalDate;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,10 +23,9 @@ public class Animal {
     private String veterinario;
     
     
-    public Animal(String DNI, String nombre, String tratamiento, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad) {
+    public Animal(String DNI, String nombre, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad) {
         this.DNI = DNI;
         this.nombre = nombre;
-        this.tratamiento = tratamiento;
         this.fechaEntrada = fechaEntrada;
         this.tipoAnimal = tipoAnimal;
         this.peso = peso;

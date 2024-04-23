@@ -12,8 +12,8 @@ import java.time.LocalDate;
 public class Ave extends Animal {
     boolean cazaFurtiva;
 
-    public Ave(String DNI, String nombre, String tratamiento, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, boolean cazaFurtiva) {
-        super(DNI, nombre, tratamiento, fechaEntrada, tipoAnimal, peso, gravedad);
+    public Ave(String DNI, String nombre, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, boolean cazaFurtiva) {
+        super(DNI, nombre, fechaEntrada, tipoAnimal, peso, gravedad);
         this.cazaFurtiva = cazaFurtiva;
     }
 

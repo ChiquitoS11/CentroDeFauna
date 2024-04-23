@@ -1,12 +1,15 @@
 package com.chiquitos11.veterinaria.view;
 
 import com.chiquitos11.veterinaria.controller.ControllerBBDD;
+import com.chiquitos11.veterinaria.deependency.UTILImagen;
 import com.chiquitos11.veterinaria.enums.Gravedad;
 import com.chiquitos11.veterinaria.enums.TipoAnimal;
 import com.chiquitos11.veterinaria.model.Ave;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
+import com.sun.tools.javac.Main;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.SQLSyntaxErrorException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
@@ -16,13 +19,23 @@ import javax.swing.JOptionPane;
  */
 public class Administracion extends javax.swing.JDialog {
 
+    UTILImagen logoIMG = new UTILImagen(Main.class.getClassLoader().getResource("rikka.png"));
+    public UTILImagen altaIMG = new UTILImagen(Main.class.getClassLoader().getResource("inicio.gif"));
+    UTILImagen fp = new UTILImagen(Main.class.getClassLoader().getResource("fpMiku.gif"));
+    
     /**
      * Creates new form NewJDialog
+     * @param parent
+     * @param modal
      */
     public Administracion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setContentPane(fp);
         initComponents();
+
+        ajustesVisuales();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,26 +46,396 @@ public class Administracion extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bajaJPANEL = new javax.swing.JPanel();
+        altaJPANEL = new javax.swing.JPanel();
+        dniLABEL = new javax.swing.JLabel();
+        dniTEXTFIELD = new javax.swing.JTextField();
+        nombreLABEL = new javax.swing.JLabel();
+        nombreTEXTFIELD = new javax.swing.JTextField();
+        pesoLABEL = new javax.swing.JLabel();
+        gravedadLABEL = new javax.swing.JLabel();
+        motivoLesionLABEL = new javax.swing.JLabel();
+        motivoLesionJCHECK_ALTA = new javax.swing.JCheckBox();
+        monitaChinaLABELalta = new javax.swing.JLabel();
+        pesoLABEL1 = new javax.swing.JLabel();
+        especieJCB = new javax.swing.JComboBox<>();
+        gravedadJCB = new javax.swing.JComboBox<>();
+        pesoJSPINNER_ALTA = new javax.swing.JSpinner();
+        enviarBTN_ALTA = new javax.swing.JButton();
+        regresarBTN_ALTA = new javax.swing.JButton();
+        mensajeFechaLABEL = new javax.swing.JLabel();
+        tratamientoJPANEL = new javax.swing.JPanel();
+        liberacionJPANEL = new javax.swing.JPanel();
+        listadoJPANEL = new javax.swing.JPanel();
+        logoLABEL = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        menuJPANEL = new javax.swing.JPanel();
+        inicioJPANEL = new javax.swing.JPanel();
+        altaBTN = new javax.swing.JButton();
+        tratamientoBTN = new javax.swing.JButton();
+        listadoBTN = new javax.swing.JButton();
+        bajaBTN = new javax.swing.JButton();
+        liberacionBTN = new javax.swing.JButton();
+        salirBTN = new javax.swing.JButton();
+        menuMonitaLABEL = new javax.swing.JLabel();
+
+        bajaJPANEL.setOpaque(false);
+
+        javax.swing.GroupLayout bajaJPANELLayout = new javax.swing.GroupLayout(bajaJPANEL);
+        bajaJPANEL.setLayout(bajaJPANELLayout);
+        bajaJPANELLayout.setHorizontalGroup(
+            bajaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 858, Short.MAX_VALUE)
+        );
+        bajaJPANELLayout.setVerticalGroup(
+            bajaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 412, Short.MAX_VALUE)
+        );
+
+        altaJPANEL.setOpaque(false);
+
+        dniLABEL.setForeground(new java.awt.Color(0, 0, 0));
+        dniLABEL.setText("DNI:");
+
+        nombreLABEL.setForeground(new java.awt.Color(0, 0, 0));
+        nombreLABEL.setText("Nombre:");
+
+        pesoLABEL.setForeground(new java.awt.Color(0, 0, 0));
+        pesoLABEL.setText("Peso:");
+
+        gravedadLABEL.setForeground(new java.awt.Color(0, 0, 0));
+        gravedadLABEL.setText("Gravedad:");
+
+        motivoLesionLABEL.setForeground(new java.awt.Color(0, 0, 0));
+        motivoLesionLABEL.setText("Caza Furtiva ?");
+
+        pesoLABEL1.setForeground(new java.awt.Color(0, 0, 0));
+        pesoLABEL1.setText("Especie:");
+
+        especieJCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                especieJCBActionPerformed(evt);
+            }
+        });
+
+        gravedadJCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gravedadJCBActionPerformed(evt);
+            }
+        });
+
+        pesoJSPINNER_ALTA.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 0.1d));
+        pesoJSPINNER_ALTA.setEditor(new javax.swing.JSpinner.DefaultEditor(pesoJSPINNER_ALTA));
+
+        enviarBTN_ALTA.setText("Dar el Alta");
+        enviarBTN_ALTA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarBTN_ALTAActionPerformed(evt);
+            }
+        });
+
+        regresarBTN_ALTA.setText("Regresar");
+
+        mensajeFechaLABEL.setForeground(new java.awt.Color(0, 0, 0));
+        mensajeFechaLABEL.setText("(El tiempo será tomado automaticamente al ser dado de alta :D)");
+
+        javax.swing.GroupLayout altaJPANELLayout = new javax.swing.GroupLayout(altaJPANEL);
+        altaJPANEL.setLayout(altaJPANELLayout);
+        altaJPANELLayout.setHorizontalGroup(
+            altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(altaJPANELLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(altaJPANELLayout.createSequentialGroup()
+                        .addComponent(motivoLesionLABEL)
+                        .addGap(28, 28, 28)
+                        .addComponent(motivoLesionJCHECK_ALTA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, altaJPANELLayout.createSequentialGroup()
+                            .addComponent(gravedadLABEL)
+                            .addGap(43, 43, 43)
+                            .addComponent(gravedadJCB, 0, 145, Short.MAX_VALUE))
+                        .addGroup(altaJPANELLayout.createSequentialGroup()
+                            .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, altaJPANELLayout.createSequentialGroup()
+                                        .addComponent(dniLABEL)
+                                        .addGap(73, 73, 73))
+                                    .addGroup(altaJPANELLayout.createSequentialGroup()
+                                        .addComponent(nombreLABEL)
+                                        .addGap(49, 49, 49)))
+                                .addGroup(altaJPANELLayout.createSequentialGroup()
+                                    .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pesoLABEL1)
+                                        .addComponent(pesoLABEL))
+                                    .addGap(54, 54, 54)))
+                            .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(pesoJSPINNER_ALTA, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dniTEXTFIELD)
+                                    .addComponent(nombreTEXTFIELD)
+                                    .addComponent(especieJCB, 0, 145, Short.MAX_VALUE)))))
+                    .addGroup(altaJPANELLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(regresarBTN_ALTA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(enviarBTN_ALTA))
+                    .addComponent(mensajeFechaLABEL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(monitaChinaLABELalta, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
+        altaJPANELLayout.setVerticalGroup(
+            altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(altaJPANELLayout.createSequentialGroup()
+                .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(altaJPANELLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dniLABEL)
+                            .addComponent(dniTEXTFIELD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreLABEL)
+                            .addComponent(nombreTEXTFIELD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pesoLABEL1)
+                            .addComponent(especieJCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(mensajeFechaLABEL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pesoLABEL)
+                            .addComponent(pesoJSPINNER_ALTA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(gravedadJCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gravedadLABEL))
+                        .addGap(28, 28, 28)
+                        .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(motivoLesionLABEL)
+                            .addComponent(motivoLesionJCHECK_ALTA, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(enviarBTN_ALTA)
+                            .addComponent(regresarBTN_ALTA)))
+                    .addGroup(altaJPANELLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(monitaChinaLABELalta, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(96, Short.MAX_VALUE))
+        );
+
+        regresarBTN_ALTA.getAccessibleContext().setAccessibleDescription("");
+
+        tratamientoJPANEL.setOpaque(false);
+
+        javax.swing.GroupLayout tratamientoJPANELLayout = new javax.swing.GroupLayout(tratamientoJPANEL);
+        tratamientoJPANEL.setLayout(tratamientoJPANELLayout);
+        tratamientoJPANELLayout.setHorizontalGroup(
+            tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 858, Short.MAX_VALUE)
+        );
+        tratamientoJPANELLayout.setVerticalGroup(
+            tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 424, Short.MAX_VALUE)
+        );
+
+        liberacionJPANEL.setOpaque(false);
+
+        javax.swing.GroupLayout liberacionJPANELLayout = new javax.swing.GroupLayout(liberacionJPANEL);
+        liberacionJPANEL.setLayout(liberacionJPANELLayout);
+        liberacionJPANELLayout.setHorizontalGroup(
+            liberacionJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 858, Short.MAX_VALUE)
+        );
+        liberacionJPANELLayout.setVerticalGroup(
+            liberacionJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 424, Short.MAX_VALUE)
+        );
+
+        listadoJPANEL.setOpaque(false);
+
+        javax.swing.GroupLayout listadoJPANELLayout = new javax.swing.GroupLayout(listadoJPANEL);
+        listadoJPANEL.setLayout(listadoJPANELLayout);
+        listadoJPANELLayout.setHorizontalGroup(
+            listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 858, Short.MAX_VALUE)
+        );
+        listadoJPANELLayout.setVerticalGroup(
+            listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 424, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+
+        logoLABEL.setBackground(new java.awt.Color(51, 255, 102));
+        logoLABEL.setForeground(new java.awt.Color(51, 255, 0));
+
+        jLabel1.setBackground(new java.awt.Color(51, 51, 0));
+        jLabel1.setFont(new java.awt.Font("Cascadia Code", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 0, 102));
+        jLabel1.setText("VETERINARIA");
+
+        jLabel2.setBackground(new java.awt.Color(51, 51, 0));
+        jLabel2.setFont(new java.awt.Font("Cascadia Code", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 0, 102));
+        jLabel2.setText("NICOLINI");
+
+        menuJPANEL.setOpaque(false);
+
+        inicioJPANEL.setOpaque(false);
+
+        altaBTN.setText("ALTA");
+        altaBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaBTNActionPerformed(evt);
+            }
+        });
+
+        tratamientoBTN.setText("TRATAMIENTO");
+
+        listadoBTN.setText("LISTADO");
+
+        bajaBTN.setText("BAJA");
+
+        liberacionBTN.setText("LIBERACION");
+
+        salirBTN.setText("SALIR");
+
+        javax.swing.GroupLayout inicioJPANELLayout = new javax.swing.GroupLayout(inicioJPANEL);
+        inicioJPANEL.setLayout(inicioJPANELLayout);
+        inicioJPANELLayout.setHorizontalGroup(
+            inicioJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inicioJPANELLayout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addGroup(inicioJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tratamientoBTN)
+                    .addGroup(inicioJPANELLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(bajaBTN)))
+                .addGap(34, 34, 34)
+                .addComponent(menuMonitaLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(inicioJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(liberacionBTN)
+                    .addGroup(inicioJPANELLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(listadoBTN)))
+                .addContainerGap(185, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inicioJPANELLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(inicioJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(salirBTN, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(altaBTN, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(373, 373, 373))
+        );
+        inicioJPANELLayout.setVerticalGroup(
+            inicioJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inicioJPANELLayout.createSequentialGroup()
+                .addGroup(inicioJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicioJPANELLayout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addGroup(inicioJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(inicioJPANELLayout.createSequentialGroup()
+                                .addComponent(listadoBTN)
+                                .addGap(92, 92, 92)
+                                .addComponent(liberacionBTN))
+                            .addGroup(inicioJPANELLayout.createSequentialGroup()
+                                .addComponent(tratamientoBTN)
+                                .addGap(92, 92, 92)
+                                .addComponent(bajaBTN))))
+                    .addGroup(inicioJPANELLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(altaBTN)
+                        .addGap(18, 18, 18)
+                        .addComponent(menuMonitaLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(salirBTN)
+                .addGap(61, 61, 61))
+        );
+
+        menuJPANEL.add(inicioJPANEL);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logoLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(47, 47, 47))
+            .addComponent(menuJPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logoLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menuJPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void altaBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaBTNActionPerformed
+
+
+    }//GEN-LAST:event_altaBTNActionPerformed
+
+    private void gravedadJCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gravedadJCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gravedadJCBActionPerformed
+
+    private void enviarBTN_ALTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarBTN_ALTAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enviarBTN_ALTAActionPerformed
+
+    private void especieJCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especieJCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_especieJCBActionPerformed
+    
+    
+    
+    public void ajustesVisuales() {
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        
+        
+        
+        for (TipoAnimal tipoAni : TipoAnimal.values()) {
+            especieJCB.addItem(tipoAni);
+        }
+        
+        for (Gravedad grav : Gravedad.values()) {
+            gravedadJCB.addItem(grav);
+        }
+        
+        
+        
+        logoIMG.imgToContainer(logoLABEL);
+        
+    }
+    
+    
     // METER A CONTROLLERADMINISTRACION
     public void meow(){
         ControllerBBDD db = new ControllerBBDD();
-        Ave a = new Ave("zxczxvzx", "KIKI", "curarle", LocalDate.now(), TipoAnimal.Ave, 13.23, Gravedad.HIGH, false);
+        Ave a = new Ave("zxczxvzx", "KIKI", LocalDate.now(), TipoAnimal.Ave, 13.23, Gravedad.HIGH, false);
         
         
         try {
@@ -62,12 +445,48 @@ public class Administracion extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
         } catch (SQLIntegrityConstraintViolationException e) {
             JOptionPane.showMessageDialog(null, "Un animal ya ha sido registrado con ese DNI, verifique los datos.");
+        } catch (SQLSyntaxErrorException e) {
+            JOptionPane.showMessageDialog(null, "No se creo la base ded datos con el nombre 'veterinaria'");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
             System.out.println("Error: " + ex.getMessage());
+            System.out.println("Excepcion: " + ex.toString());
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton altaBTN;
+    public javax.swing.JPanel altaJPANEL;
+    public javax.swing.JButton bajaBTN;
+    public javax.swing.JPanel bajaJPANEL;
+    private javax.swing.JLabel dniLABEL;
+    public javax.swing.JTextField dniTEXTFIELD;
+    public javax.swing.JButton enviarBTN_ALTA;
+    public javax.swing.JComboBox<TipoAnimal> especieJCB;
+    public javax.swing.JComboBox<Gravedad> gravedadJCB;
+    private javax.swing.JLabel gravedadLABEL;
+    public javax.swing.JPanel inicioJPANEL;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    public javax.swing.JButton liberacionBTN;
+    public javax.swing.JPanel liberacionJPANEL;
+    public javax.swing.JButton listadoBTN;
+    public javax.swing.JPanel listadoJPANEL;
+    private javax.swing.JLabel logoLABEL;
+    private javax.swing.JLabel mensajeFechaLABEL;
+    public javax.swing.JPanel menuJPANEL;
+    private javax.swing.JLabel menuMonitaLABEL;
+    public javax.swing.JLabel monitaChinaLABELalta;
+    public javax.swing.JCheckBox motivoLesionJCHECK_ALTA;
+    public javax.swing.JLabel motivoLesionLABEL;
+    private javax.swing.JLabel nombreLABEL;
+    public javax.swing.JTextField nombreTEXTFIELD;
+    public javax.swing.JSpinner pesoJSPINNER_ALTA;
+    private javax.swing.JLabel pesoLABEL;
+    private javax.swing.JLabel pesoLABEL1;
+    public javax.swing.JButton regresarBTN_ALTA;
+    public javax.swing.JButton salirBTN;
+    public javax.swing.JButton tratamientoBTN;
+    public javax.swing.JPanel tratamientoJPANEL;
     // End of variables declaration//GEN-END:variables
 }

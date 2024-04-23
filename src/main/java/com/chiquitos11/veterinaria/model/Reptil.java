@@ -12,8 +12,8 @@ import java.time.LocalDate;
 public class Reptil extends Animal {
     boolean infeccionBacteriana;
 
-    public Reptil(String DNI, String nombre, String tratamiento, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, boolean infeccionBacteriana) {
-        super(DNI, nombre, tratamiento, fechaEntrada, tipoAnimal, peso, gravedad);
+    public Reptil(String DNI, String nombre, LocalDate fechaEntrada, TipoAnimal tipoAnimal, double peso, Gravedad gravedad, boolean infeccionBacteriana) {
+        super(DNI, nombre, fechaEntrada, tipoAnimal, peso, gravedad);
         this.infeccionBacteriana = infeccionBacteriana;
     }
     

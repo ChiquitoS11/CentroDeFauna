@@ -8,7 +8,9 @@ import com.chiquitos11.veterinaria.model.Animal;
 import com.chiquitos11.veterinaria.model.Ave;
 import com.chiquitos11.veterinaria.model.AveDAO;
 import com.chiquitos11.veterinaria.model.Mamifero;
+import com.chiquitos11.veterinaria.model.MamiferoDAO;
 import com.chiquitos11.veterinaria.model.Reptil;
+import com.chiquitos11.veterinaria.model.ReptilDAO;
 import java.sql.SQLException;
 
 /**
@@ -28,12 +30,12 @@ public class ControllerBBDD {
         if (animal instanceof Mamifero) {
             // El animal es un Mamifero
             Mamifero mamifero = (Mamifero) animal;
-            
+            new MamiferoDAO().insertarMamifero(mamifero);
             
         } else if (animal instanceof Reptil) {
             // El animal es un Reptil
             Reptil reptil = (Reptil) animal;
-            
+            new ReptilDAO().insertarReptil(reptil);
             
         } else if (animal instanceof Ave) {
             // El animal es un Ave

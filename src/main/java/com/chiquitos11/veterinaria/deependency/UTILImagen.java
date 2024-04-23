@@ -63,14 +63,14 @@ public class UTILImagen extends JPanel {
         g.drawImage(imagenIMAGE, 0, 0, getWidth(), getHeight(), this);
     }
     
-    public void imgToContainer(Component actual) {
+    public void imgToContainer(Component component) {
         
         
         JLabel nuevoLabel = null;
-        if (actual instanceof JLabel) {
-            Icon icon = new ImageIcon(imagenImageIcon.getImage().getScaledInstance(actual.getWidth(), actual.getHeight(), Image.SCALE_DEFAULT));
+        if (component instanceof JLabel) {
+            Icon icon = new ImageIcon(imagenImageIcon.getImage().getScaledInstance(component.getWidth(), component.getHeight(), Image.SCALE_DEFAULT));
 
-            nuevoLabel = (JLabel) actual;
+            nuevoLabel = (JLabel) component;
             nuevoLabel.setIcon(icon);
         }
         
