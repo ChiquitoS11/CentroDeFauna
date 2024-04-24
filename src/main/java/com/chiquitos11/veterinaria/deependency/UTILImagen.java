@@ -83,7 +83,7 @@ public class UTILImagen extends JPanel {
     }
 
     
-    public Icon ajustarIMGtoJLABELInvert(Component imagen, boolean horizontal){
+    public Icon imgToContainerInvert(Component imagen, boolean horizontal){
         int width = imagenIMAGE.getWidth(null);
         int height = imagenIMAGE.getHeight(null);
         BufferedImage imgFlipped = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);

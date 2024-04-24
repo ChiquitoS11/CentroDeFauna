@@ -3,11 +3,14 @@ package com.chiquitos11.veterinaria.controller;
 import com.chiquitos11.veterinaria.model.Animal;
 import com.chiquitos11.veterinaria.model.Ave;
 import com.chiquitos11.veterinaria.model.AveDAO;
+import com.chiquitos11.veterinaria.model.Conexion;
 import com.chiquitos11.veterinaria.model.Mamifero;
 import com.chiquitos11.veterinaria.model.MamiferoDAO;
 import com.chiquitos11.veterinaria.model.Reptil;
 import com.chiquitos11.veterinaria.model.ReptilDAO;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -22,6 +25,16 @@ public class ControllerBBDD {
         ejecutarDarAlta(a);
     }
     
+    public ResultSet obtenerListado(String tipoAnimal) throws SQLException {
+        Statement statement = new Conexion().getConnection().createStatement();
+        ResultSet rs = statement.executeQuery("SELECT * FROM " + tipoAnimal);
+        return rs;
+    }
+    
+    public void darBaja(String dni, String tipoAnimal) throws SQLException {
+        Statement statement = new Conexion().getConnection().createStatement();
+        int arows = statement.executeUpdate("DELETE FROM " +tipoAnimal+" WHERE dni =  '" + dni + "'");
+    }
     
     
     private void ejecutarDarAlta(Animal animal) throws SQLException{

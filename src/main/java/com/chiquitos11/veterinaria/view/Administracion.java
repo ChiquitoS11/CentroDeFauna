@@ -4,25 +4,19 @@ import com.chiquitos11.veterinaria.controller.ControllerBBDD;
 import com.chiquitos11.veterinaria.deependency.UTILImagen;
 import com.chiquitos11.veterinaria.enums.Gravedad;
 import com.chiquitos11.veterinaria.enums.TipoAnimal;
-import com.chiquitos11.veterinaria.model.Ave;
-import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import com.sun.tools.javac.Main;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.SQLSyntaxErrorException;
-import java.time.LocalDate;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author ChiquitoS11
  */
 public class Administracion extends javax.swing.JDialog {
-
+    
+    UTILImagen fp = new UTILImagen(Main.class.getClassLoader().getResource("fpMiku.gif"));
     UTILImagen logoIMG = new UTILImagen(Main.class.getClassLoader().getResource("rikka.png"));
     public UTILImagen altaIMG = new UTILImagen(Main.class.getClassLoader().getResource("inicio.gif"));
-    UTILImagen fp = new UTILImagen(Main.class.getClassLoader().getResource("fpMiku.gif"));
-    
+    public UTILImagen bajaIMG = new UTILImagen(Main.class.getClassLoader().getResource("monitaChinaLlorando.gif"));
+
     /**
      * Creates new form NewJDialog
      * @param parent
@@ -47,6 +41,14 @@ public class Administracion extends javax.swing.JDialog {
     private void initComponents() {
 
         bajaJPANEL = new javax.swing.JPanel();
+        animalActualJCB_BAJA = new javax.swing.JComboBox<>();
+        mensajeUsuarioLABEL_BAJA = new javax.swing.JLabel();
+        retrocederBTN_BAJA = new javax.swing.JButton();
+        avanzarBTN_BAJA = new javax.swing.JButton();
+        monitaChinaLABEL_BAJA = new javax.swing.JLabel();
+        darBajaBTN_BAJA = new javax.swing.JButton();
+        regresarMenuBTN_BAJA = new javax.swing.JButton();
+        estadoBorradoLABEL_BAJA = new javax.swing.JLabel();
         altaJPANEL = new javax.swing.JPanel();
         dniLABEL = new javax.swing.JLabel();
         dniTEXTFIELD = new javax.swing.JTextField();
@@ -62,7 +64,7 @@ public class Administracion extends javax.swing.JDialog {
         gravedadJCB = new javax.swing.JComboBox<>();
         pesoJSPINNER_ALTA = new javax.swing.JSpinner();
         enviarBTN_ALTA = new javax.swing.JButton();
-        regresarBTN_ALTA = new javax.swing.JButton();
+        regresarMenuBTN_ALTA = new javax.swing.JButton();
         mensajeFechaLABEL = new javax.swing.JLabel();
         estadoSubidaLABEL = new javax.swing.JLabel();
         tratamientoJPANEL = new javax.swing.JPanel();
@@ -83,15 +85,86 @@ public class Administracion extends javax.swing.JDialog {
 
         bajaJPANEL.setOpaque(false);
 
+        animalActualJCB_BAJA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                animalActualJCB_BAJAActionPerformed(evt);
+            }
+        });
+
+        mensajeUsuarioLABEL_BAJA.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        mensajeUsuarioLABEL_BAJA.setForeground(new java.awt.Color(0, 0, 0));
+        mensajeUsuarioLABEL_BAJA.setText("¿Qué tipo de animal desea dar de baja?");
+
+        retrocederBTN_BAJA.setText("Atrás");
+        retrocederBTN_BAJA.setEnabled(false);
+        retrocederBTN_BAJA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retrocederBTN_BAJAActionPerformed(evt);
+            }
+        });
+
+        avanzarBTN_BAJA.setText("Adelante");
+
+        darBajaBTN_BAJA.setText("Dar Baja");
+        darBajaBTN_BAJA.setEnabled(false);
+
+        regresarMenuBTN_BAJA.setText("Regresar");
+
+        estadoBorradoLABEL_BAJA.setFont(new java.awt.Font("SimSun-ExtB", 0, 18)); // NOI18N
+        estadoBorradoLABEL_BAJA.setForeground(new java.awt.Color(255, 102, 102));
+
         javax.swing.GroupLayout bajaJPANELLayout = new javax.swing.GroupLayout(bajaJPANEL);
         bajaJPANEL.setLayout(bajaJPANELLayout);
         bajaJPANELLayout.setHorizontalGroup(
             bajaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 858, Short.MAX_VALUE)
+            .addGroup(bajaJPANELLayout.createSequentialGroup()
+                .addGroup(bajaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bajaJPANELLayout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(animalActualJCB_BAJA, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bajaJPANELLayout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(darBajaBTN_BAJA))
+                    .addGroup(bajaJPANELLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addGroup(bajaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(estadoBorradoLABEL_BAJA, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(bajaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(bajaJPANELLayout.createSequentialGroup()
+                                    .addComponent(retrocederBTN_BAJA)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(avanzarBTN_BAJA))
+                                .addComponent(mensajeUsuarioLABEL_BAJA, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addComponent(monitaChinaLABEL_BAJA, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bajaJPANELLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(regresarMenuBTN_BAJA)
+                .addGap(331, 331, 331))
         );
         bajaJPANELLayout.setVerticalGroup(
             bajaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGroup(bajaJPANELLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mensajeUsuarioLABEL_BAJA)
+                .addGap(53, 53, 53)
+                .addComponent(animalActualJCB_BAJA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addGroup(bajaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(retrocederBTN_BAJA)
+                    .addComponent(avanzarBTN_BAJA))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(darBajaBTN_BAJA)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(estadoBorradoLABEL_BAJA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+            .addGroup(bajaJPANELLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(monitaChinaLABEL_BAJA, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(regresarMenuBTN_BAJA)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         altaJPANEL.setOpaque(false);
@@ -136,7 +209,7 @@ public class Administracion extends javax.swing.JDialog {
             }
         });
 
-        regresarBTN_ALTA.setText("Regresar");
+        regresarMenuBTN_ALTA.setText("Regresar");
 
         mensajeFechaLABEL.setForeground(new java.awt.Color(0, 0, 0));
         mensajeFechaLABEL.setText("(El tiempo será tomado automaticamente al ser dado de alta :D)");
@@ -183,7 +256,7 @@ public class Administracion extends javax.swing.JDialog {
                     .addComponent(mensajeFechaLABEL)
                     .addGroup(altaJPANELLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addComponent(regresarBTN_ALTA)
+                        .addComponent(regresarMenuBTN_ALTA)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(enviarBTN_ALTA))
                     .addComponent(estadoSubidaLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -225,7 +298,7 @@ public class Administracion extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(altaJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(enviarBTN_ALTA)
-                            .addComponent(regresarBTN_ALTA)))
+                            .addComponent(regresarMenuBTN_ALTA)))
                     .addGroup(altaJPANELLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(monitaChinaLABELalta, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -234,7 +307,7 @@ public class Administracion extends javax.swing.JDialog {
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
-        regresarBTN_ALTA.getAccessibleContext().setAccessibleDescription("");
+        regresarMenuBTN_ALTA.getAccessibleContext().setAccessibleDescription("");
 
         tratamientoJPANEL.setOpaque(false);
 
@@ -415,6 +488,14 @@ public class Administracion extends javax.swing.JDialog {
     private void especieJCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_especieJCBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_especieJCBActionPerformed
+
+    private void animalActualJCB_BAJAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animalActualJCB_BAJAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_animalActualJCB_BAJAActionPerformed
+
+    private void retrocederBTN_BAJAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retrocederBTN_BAJAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_retrocederBTN_BAJAActionPerformed
     
     
     
@@ -435,41 +516,22 @@ public class Administracion extends javax.swing.JDialog {
         
         
         logoIMG.imgToContainer(logoLABEL);
-        
+
     }
-    
-    
-    // METER A CONTROLLERADMINISTRACION
-//    public void meow(){
-//        ControllerBBDD db = new ControllerBBDD();
-//        Ave a = new Ave("zxczxvzx", "KIKI", LocalDate.now(), TipoAnimal.Ave, 13.23, Gravedad.HIGH, false);
-//        
-//        
-//        try {
-//            db.darAlta(a);
-//         // db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
-//        } catch (CommunicationsException e) {
-//            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
-//        } catch (SQLIntegrityConstraintViolationException e) {
-//            JOptionPane.showMessageDialog(null, "Un animal ya ha sido registrado con ese DNI, verifique los datos.");
-//        } catch (SQLSyntaxErrorException e) {
-//            JOptionPane.showMessageDialog(null, "No se creo la base ded datos con el nombre 'veterinaria'");
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
-//            System.out.println("Error: " + ex.getMessage());
-//            System.out.println("Excepcion: " + ex.toString());
-//        }
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton altaBTN;
     public javax.swing.JPanel altaJPANEL;
+    public javax.swing.JComboBox<String> animalActualJCB_BAJA;
+    public javax.swing.JButton avanzarBTN_BAJA;
     public javax.swing.JButton bajaBTN;
     public javax.swing.JPanel bajaJPANEL;
+    public javax.swing.JButton darBajaBTN_BAJA;
     private javax.swing.JLabel dniLABEL;
     public javax.swing.JTextField dniTEXTFIELD;
     public javax.swing.JButton enviarBTN_ALTA;
     public javax.swing.JComboBox<TipoAnimal> especieJCB;
+    public javax.swing.JLabel estadoBorradoLABEL_BAJA;
     public javax.swing.JLabel estadoSubidaLABEL;
     public javax.swing.JComboBox<Gravedad> gravedadJCB;
     private javax.swing.JLabel gravedadLABEL;
@@ -482,8 +544,10 @@ public class Administracion extends javax.swing.JDialog {
     public javax.swing.JPanel listadoJPANEL;
     private javax.swing.JLabel logoLABEL;
     private javax.swing.JLabel mensajeFechaLABEL;
+    private javax.swing.JLabel mensajeUsuarioLABEL_BAJA;
     public javax.swing.JPanel menuJPANEL;
     private javax.swing.JLabel menuMonitaLABEL;
+    public javax.swing.JLabel monitaChinaLABEL_BAJA;
     public javax.swing.JLabel monitaChinaLABELalta;
     public javax.swing.JCheckBox motivoLesionJCHECK_ALTA;
     public javax.swing.JLabel motivoLesionLABEL;
@@ -492,7 +556,9 @@ public class Administracion extends javax.swing.JDialog {
     public javax.swing.JSpinner pesoJSPINNER_ALTA;
     private javax.swing.JLabel pesoLABEL;
     private javax.swing.JLabel pesoLABEL1;
-    public javax.swing.JButton regresarBTN_ALTA;
+    public javax.swing.JButton regresarMenuBTN_ALTA;
+    public javax.swing.JButton regresarMenuBTN_BAJA;
+    public javax.swing.JButton retrocederBTN_BAJA;
     public javax.swing.JButton salirBTN;
     public javax.swing.JButton tratamientoBTN;
     public javax.swing.JPanel tratamientoJPANEL;

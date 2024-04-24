@@ -9,10 +9,13 @@ import com.chiquitos11.veterinaria.view.Administracion;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.SQLSyntaxErrorException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -60,19 +63,7 @@ public class ControllerAdministracion {
                 ad.repaint(); 
             }
     };
-    
-    final ActionListener bajaBTNaction = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ad.menuJPANEL.removeAll();
-                ad.menuJPANEL.add(ad.bajaJPANEL);
-                
-                
-                
-                ad.revalidate(); 
-                ad.repaint(); 
-            }
-    };
+
     
     final ActionListener liberacionBTNaction = new ActionListener() {
             @Override
@@ -94,22 +85,24 @@ public class ControllerAdministracion {
             }
     };
     
+    final ActionListener regresarMenuBTNaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ad.menuJPANEL.removeAll();
+                ad.menuJPANEL.add(ad.inicioJPANEL);
+                 
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
     //
     //
     // ALTAJPANEL --------------------------------------------------------------
     //
     //
     
-    final ActionListener regresarMenuBTNaction = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ad.menuJPANEL.removeAll();
-                ad.menuJPANEL.add(ad.inicioJPANEL);
-                
-                ad.revalidate(); 
-                ad.repaint(); 
-            }
-    };
+
     
     final ActionListener especieJCBaction = new ActionListener() {
             @Override
@@ -230,6 +223,117 @@ public class ControllerAdministracion {
             }
     };
     
+    //
+    //
+    // BAJAJPANEL --------------------------------------------------------------
+    //
+    //
+    
+    
+    final ActionListener bajaBTNaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ad.menuJPANEL.removeAll();
+                ad.menuJPANEL.add(ad.bajaJPANEL);
+                ad.animalActualJCB_BAJA.removeAllItems();
+                ad.revalidate(); 
+                ad.repaint();
+
+                
+                for (TipoAnimal tipoAni : TipoAnimal.values()) {
+                    ad.animalActualJCB_BAJA.addItem(tipoAni.toString());
+                }
+                
+                ad.bajaIMG.imgToContainer(ad.monitaChinaLABEL_BAJA);
+                
+            }
+    };
+    
+    
+    final ActionListener retrocederBTN_BAJAaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ad.animalActualJCB_BAJA.removeAllItems();
+                
+                ad.avanzarBTN_BAJA.setEnabled(true);
+                ad.retrocederBTN_BAJA.setEnabled(false);
+                ad.darBajaBTN_BAJA.setEnabled(false);
+                
+                for (TipoAnimal tipoAni : TipoAnimal.values()) {
+                    ad.animalActualJCB_BAJA.addItem(tipoAni.toString());
+                }
+                
+                
+                
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
+    String tipoAnimalElegido_BAJA = "";
+    final ActionListener avanzarBTN_BAJAaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                
+                ad.avanzarBTN_BAJA.setEnabled(false);
+                ad.retrocederBTN_BAJA.setEnabled(true);
+                ad.darBajaBTN_BAJA.setEnabled(true);
+                
+                System.out.println(((String)ad.animalActualJCB_BAJA.getSelectedItem()).toLowerCase());
+                tipoAnimalElegido_BAJA = ((String)ad.animalActualJCB_BAJA.getSelectedItem()).toLowerCase();
+                
+                
+                try {
+                    ResultSet rs = db.obtenerListado(tipoAnimalElegido_BAJA);
+                    
+                    
+                    ad.animalActualJCB_BAJA.removeAllItems(); // SACADA DE *****, COMO LO MUEVAS DE AQUI SE ROMPE EL PROGRAMA xd
+                    
+                    
+                    while (rs.next()) {
+                        ad.animalActualJCB_BAJA.addItem(rs.getString("dni") + ", " + rs.getString("nombre"));
+                    }
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControllerAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                
+                
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
+            final ActionListener bajaBTN_BAJAaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String bajaStr = (String)ad.animalActualJCB_BAJA.getSelectedItem();
+                int indiceComa = bajaStr.indexOf(",");
+                String bajaADar = bajaStr.substring(0, indiceComa);
+
+                try {
+                    db.darBaja(bajaADar, tipoAnimalElegido_BAJA);
+                    ad.estadoBorradoLABEL_BAJA.setText("DATOS ELIMINADOS EXITOSAMENTE.");
+                } catch (SQLException ex) {
+                    ad.estadoBorradoLABEL_BAJA.setText("ERROR EN LA ELIMINACIÓN DE DATOS.");
+                    Logger.getLogger(ControllerAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                ActionEvent evento = new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "");
+
+                retrocederBTN_BAJAaction.actionPerformed(evento);
+                
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+            
+            
     public ControllerAdministracion(Administracion ad) {
         this.ad = ad;
         db = new ControllerBBDD();
@@ -244,10 +348,15 @@ public class ControllerAdministracion {
     
         
         // ALTAJPANEL
-        ad.regresarBTN_ALTA.addActionListener(regresarMenuBTNaction);
+        ad.regresarMenuBTN_ALTA.addActionListener(regresarMenuBTNaction);
         ad.especieJCB.addActionListener(especieJCBaction);
         ad.enviarBTN_ALTA.addActionListener(enviarBTNaltaaction);
         
+        // BAJAJPANEL
+        ad.retrocederBTN_BAJA.addActionListener(retrocederBTN_BAJAaction);
+        ad.avanzarBTN_BAJA.addActionListener(avanzarBTN_BAJAaction);
+        ad.darBajaBTN_BAJA.addActionListener(bajaBTN_BAJAaction);
+        ad.regresarMenuBTN_BAJA.addActionListener(regresarMenuBTNaction);
     }
     
     public void reiniciarAlta(){
@@ -255,5 +364,10 @@ public class ControllerAdministracion {
         ad.nombreTEXTFIELD.setText("");
         ad.pesoJSPINNER_ALTA.setValue(0.0);
     }
+    
+    public void reiniciarJCBBaja(){
+        
+    }
+    
     
 }
