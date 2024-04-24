@@ -64,6 +64,7 @@ public class Administracion extends javax.swing.JDialog {
         enviarBTN_ALTA = new javax.swing.JButton();
         regresarBTN_ALTA = new javax.swing.JButton();
         mensajeFechaLABEL = new javax.swing.JLabel();
+        estadoSubidaLABEL = new javax.swing.JLabel();
         tratamientoJPANEL = new javax.swing.JPanel();
         liberacionJPANEL = new javax.swing.JPanel();
         listadoJPANEL = new javax.swing.JPanel();
@@ -140,6 +141,9 @@ public class Administracion extends javax.swing.JDialog {
         mensajeFechaLABEL.setForeground(new java.awt.Color(0, 0, 0));
         mensajeFechaLABEL.setText("(El tiempo será tomado automaticamente al ser dado de alta :D)");
 
+        estadoSubidaLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        estadoSubidaLABEL.setForeground(new java.awt.Color(255, 102, 102));
+
         javax.swing.GroupLayout altaJPANELLayout = new javax.swing.GroupLayout(altaJPANEL);
         altaJPANEL.setLayout(altaJPANELLayout);
         altaJPANELLayout.setHorizontalGroup(
@@ -176,12 +180,13 @@ public class Administracion extends javax.swing.JDialog {
                                     .addComponent(dniTEXTFIELD)
                                     .addComponent(nombreTEXTFIELD)
                                     .addComponent(especieJCB, 0, 145, Short.MAX_VALUE)))))
+                    .addComponent(mensajeFechaLABEL)
                     .addGroup(altaJPANELLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(regresarBTN_ALTA)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(enviarBTN_ALTA))
-                    .addComponent(mensajeFechaLABEL))
+                    .addComponent(estadoSubidaLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(monitaChinaLABELalta, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -224,7 +229,9 @@ public class Administracion extends javax.swing.JDialog {
                     .addGroup(altaJPANELLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(monitaChinaLABELalta, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(estadoSubidaLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         regresarBTN_ALTA.getAccessibleContext().setAccessibleDescription("");
@@ -433,26 +440,26 @@ public class Administracion extends javax.swing.JDialog {
     
     
     // METER A CONTROLLERADMINISTRACION
-    public void meow(){
-        ControllerBBDD db = new ControllerBBDD();
-        Ave a = new Ave("zxczxvzx", "KIKI", LocalDate.now(), TipoAnimal.Ave, 13.23, Gravedad.HIGH, false);
-        
-        
-        try {
-            db.darAlta(a);
-         // db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
-        } catch (CommunicationsException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
-        } catch (SQLIntegrityConstraintViolationException e) {
-            JOptionPane.showMessageDialog(null, "Un animal ya ha sido registrado con ese DNI, verifique los datos.");
-        } catch (SQLSyntaxErrorException e) {
-            JOptionPane.showMessageDialog(null, "No se creo la base ded datos con el nombre 'veterinaria'");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
-            System.out.println("Error: " + ex.getMessage());
-            System.out.println("Excepcion: " + ex.toString());
-        }
-    }
+//    public void meow(){
+//        ControllerBBDD db = new ControllerBBDD();
+//        Ave a = new Ave("zxczxvzx", "KIKI", LocalDate.now(), TipoAnimal.Ave, 13.23, Gravedad.HIGH, false);
+//        
+//        
+//        try {
+//            db.darAlta(a);
+//         // db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
+//        } catch (CommunicationsException e) {
+//            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
+//        } catch (SQLIntegrityConstraintViolationException e) {
+//            JOptionPane.showMessageDialog(null, "Un animal ya ha sido registrado con ese DNI, verifique los datos.");
+//        } catch (SQLSyntaxErrorException e) {
+//            JOptionPane.showMessageDialog(null, "No se creo la base ded datos con el nombre 'veterinaria'");
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
+//            System.out.println("Error: " + ex.getMessage());
+//            System.out.println("Excepcion: " + ex.toString());
+//        }
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton altaBTN;
@@ -463,6 +470,7 @@ public class Administracion extends javax.swing.JDialog {
     public javax.swing.JTextField dniTEXTFIELD;
     public javax.swing.JButton enviarBTN_ALTA;
     public javax.swing.JComboBox<TipoAnimal> especieJCB;
+    public javax.swing.JLabel estadoSubidaLABEL;
     public javax.swing.JComboBox<Gravedad> gravedadJCB;
     private javax.swing.JLabel gravedadLABEL;
     public javax.swing.JPanel inicioJPANEL;

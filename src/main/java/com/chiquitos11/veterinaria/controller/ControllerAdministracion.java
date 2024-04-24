@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.chiquitos11.veterinaria.controller;
 
 import com.chiquitos11.veterinaria.enums.Gravedad;
 import com.chiquitos11.veterinaria.enums.TipoAnimal;
-import com.chiquitos11.veterinaria.model.Animal;
 import com.chiquitos11.veterinaria.model.Ave;
 import com.chiquitos11.veterinaria.model.Mamifero;
 import com.chiquitos11.veterinaria.model.Reptil;
@@ -18,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.SQLSyntaxErrorException;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import javax.swing.JOptionPane;
 
 /**
@@ -142,16 +136,19 @@ public class ControllerAdministracion {
                 if (ad.dniTEXTFIELD.getText().isBlank()) {
                     System.out.println("DNI vacio en el panel de alta");
                     reiniciarAlta();
+                    ad.estadoSubidaLABEL.setText("ERROR EN LA CARGA DE DATOS.");
                     return;
                 }
                 if (ad.dniTEXTFIELD.getText().isBlank()) {
                     System.out.println("Nombre vacio en el panel de alta");
                     reiniciarAlta();
+                    ad.estadoSubidaLABEL.setText("ERROR EN LA CARGA DE DATOS.");
                     return;
                 }
                 if (0.1 > (double)ad.pesoJSPINNER_ALTA.getValue()) {
                     System.out.println("Peso vacio");
                     reiniciarAlta();
+                    ad.estadoSubidaLABEL.setText("ERROR EN LA CARGA DE DATOS.");
                     return;
                 }
                 
@@ -159,6 +156,7 @@ public class ControllerAdministracion {
                 switch (ad.especieJCB.getSelectedItem().toString()) {
                     case "Ave":
                         try {
+                            ad.estadoSubidaLABEL.setText("ERROR EN LA CARGA DE DATOS.");
                             db.darAlta(new Ave(ad.dniTEXTFIELD.getText(), 
                                     ad.nombreTEXTFIELD.getText(),
                                     LocalDate.now(), 
@@ -166,6 +164,7 @@ public class ControllerAdministracion {
                                     (double)ad.pesoJSPINNER_ALTA.getValue(), 
                                     (Gravedad)ad.gravedadJCB.getSelectedItem(),
                                     ad.motivoLesionJCHECK_ALTA.isSelected()));
+                            
                         // db.darAlta(new Reptil()); // ASI PASARE LOS DATOS DE LA LOGICA A LA ddbb
                         } catch (CommunicationsException ex) {
                            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
@@ -218,7 +217,7 @@ public class ControllerAdministracion {
                         } catch (SQLIntegrityConstraintViolationException ex) {
                            JOptionPane.showMessageDialog(null, "Un animal ya ha sido registrado con ese DNI, verifique los datos.");
                         } catch (SQLSyntaxErrorException ex) {
-                           JOptionPane.showMessageDialog(null, "No se creo la base ded datos con el nombre 'veterinaria'");
+                           JOptionPane.showMessageDialog(null, "ERROR DE SINTAXIS");
                         } catch (SQLException ex) {
                            JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
                            System.out.println("Error: " + ex.getMessage());
@@ -226,6 +225,7 @@ public class ControllerAdministracion {
                         }
                         break;
                 }
+                ad.estadoSubidaLABEL.setText("DATOS CARGADOS EXITOSAMENTE.");
                 
             }
     };

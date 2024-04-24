@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.chiquitos11.veterinaria.model;
 
 import java.sql.SQLException;
@@ -9,7 +5,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author Alumno
+ * @author ChiquitoS11
  */
 public class MamiferoDAO {
 
@@ -18,7 +14,7 @@ public class MamiferoDAO {
         Statement s = new Conexion().getConnection().createStatement();
         System.out.println("se creo la statement");
 ////        System.out.println("no se subio el value");
-        int nFil = s.executeUpdate("insert into ave(dni, nombre, fechaEntrada, tipoAnimal, peso, gravedad, cazaFurtiva)"
+        int nFil = s.executeUpdate("insert into mamifero(dni, nombre, fechaEntrada, tipoAnimal, peso, gravedad, atropello)"
                 + " values('" + mamifero.getDNI() + "', "
                 + "'" + mamifero.getNombre() + "', "
                 //                                    + "NOW(), "

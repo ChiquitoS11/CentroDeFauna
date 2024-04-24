@@ -1,5 +1,4 @@
 import com.chiquitos11.veterinaria.controller.ControllerVeterinaria;
-import com.chiquitos11.veterinaria.view.Administracion;
 import com.chiquitos11.veterinaria.view.Veterinaria;
 import java.awt.Color;
 import javax.swing.BorderFactory;

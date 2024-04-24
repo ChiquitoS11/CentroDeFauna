@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.chiquitos11.veterinaria.controller;
 
 import com.chiquitos11.veterinaria.model.Animal;
@@ -26,11 +22,13 @@ public class ControllerBBDD {
         ejecutarDarAlta(a);
     }
     
+    
+    
     private void ejecutarDarAlta(Animal animal) throws SQLException{
         if (animal instanceof Mamifero) {
             // El animal es un Mamifero
-            Mamifero mamifero = (Mamifero) animal;
-            new MamiferoDAO().insertarMamifero(mamifero);
+//            Mamifero mamifero = (Mamifero) animal;
+            new MamiferoDAO().insertarMamifero((Mamifero) animal);
             
         } else if (animal instanceof Reptil) {
             // El animal es un Reptil
