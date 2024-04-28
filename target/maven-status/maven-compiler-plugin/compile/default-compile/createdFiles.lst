@@ -3,6 +3,7 @@ com\chiquitos11\veterinaria\model\Mamifero.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$2.class
 com\chiquitos11\veterinaria\view\Administracion$5.class
+com\chiquitos11\veterinaria\controller\ControllerAdministracion$13.class
 CentroDeFauna.class
 com\chiquitos11\veterinaria\view\Administracion.class
 com\chiquitos11\veterinaria\model\AveDAO.class
@@ -29,6 +30,7 @@ com\chiquitos11\veterinaria\controller\ControllerVeterinaria$7.class
 com\chiquitos11\veterinaria\model\ReptilDAO.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$9.class
 com\chiquitos11\veterinaria\enums\Gravedad.class
+com\chiquitos11\veterinaria\controller\ControllerAdministracion$15.class
 com\chiquitos11\veterinaria\model\Conexion.class
 com\chiquitos11\veterinaria\deependency\UTILImagen.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$1.class
@@ -40,6 +42,7 @@ com\chiquitos11\veterinaria\enums\MotivoSalida.class
 com\chiquitos11\veterinaria\model\Reptil.class
 com\chiquitos11\veterinaria\model\Ave.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$11.class
+com\chiquitos11\veterinaria\controller\ControllerAdministracion$14.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$1.class
 com\chiquitos11\veterinaria\deependency\UTILPersonaje.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$8.class

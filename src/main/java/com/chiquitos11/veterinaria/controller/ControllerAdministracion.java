@@ -34,24 +34,14 @@ public class ControllerAdministracion {
                 ad.menuJPANEL.add(ad.altaJPANEL);
                 ad.revalidate(); 
                 ad.repaint(); 
+                ad.estadoSubidaLABEL.setText("");
                 
                 
                 
                 ad.altaIMG.imgToContainer(ad.monitaChinaLABELalta);
             }
     };
-    
-    final ActionListener tratamientoBTNaction = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ad.menuJPANEL.removeAll();
-                ad.menuJPANEL.add(ad.tratamientoJPANEL);
-                
-                
-                ad.revalidate(); 
-                ad.repaint(); 
-            }
-    };
+   
     
     final ActionListener listadoBTNaction = new ActionListener() {
             @Override
@@ -63,21 +53,6 @@ public class ControllerAdministracion {
                 
                 ad.revalidate(); 
                 ad.repaint(); 
-            }
-    };
-
-    
-    final ActionListener liberacionBTNaction = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ad.menuJPANEL.removeAll();
-                ad.menuJPANEL.add(ad.liberacionJPANEL);
-                
-                
-                
-                ad.revalidate(); 
-                ad.repaint();
-                ad.bajaIMG.imgToContainer(ad.liberacionIMG);
             }
     };
     
@@ -221,6 +196,7 @@ public class ControllerAdministracion {
                         }
                         break;
                 }
+                reiniciarAlta();
                 ad.estadoSubidaLABEL.setText("DATOS CARGADOS EXITOSAMENTE.");
                 
             }
@@ -313,7 +289,7 @@ public class ControllerAdministracion {
             }
     };
     
-            final ActionListener bajaBTN_BAJAaction = new ActionListener() {
+    final ActionListener bajaBTN_BAJAaction = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
@@ -321,6 +297,10 @@ public class ControllerAdministracion {
                 int indiceComa = bajaStr.indexOf(",");
                 String bajaADar = bajaStr.substring(0, indiceComa);
                 String veterinario = ad.veterinarioJTEXT_BAJA.getText();
+                if (veterinario.equalsIgnoreCase("")) {
+                    JOptionPane.showMessageDialog(null, "El nombre del veterinario no puede estar vacío.");
+                    return;
+                }
                 System.out.println(veterinario);
                 
                 try {
@@ -353,6 +333,139 @@ public class ControllerAdministracion {
     // LIBERACIONJPANEL --------------------------------------------------------------
     //
     //
+
+    final ActionListener liberacionBTNaction = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ad.menuJPANEL.removeAll();
+            ad.menuJPANEL.add(ad.liberacionJPANEL);
+            ad.animalActualJCB_LIBERACION.removeAllItems();
+            ad.revalidate(); 
+            ad.repaint();
+
+            for (TipoAnimal tipoAni : TipoAnimal.values()) {
+                ad.animalActualJCB_LIBERACION.addItem(tipoAni.toString());
+            }
+
+            ad.liberacionIMG.imgToContainer(ad.monitaChinaLABEL_LIBERACION);
+        }
+    };
+    final ActionListener retrocederBTN_LIBERACIONaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ad.animalActualJCB_LIBERACION.removeAllItems();
+                
+                ad.avanzarBTN_LIBERACION.setEnabled(true);
+                ad.retrocederBTN_LIBERACION.setEnabled(false);
+                ad.darLiberacionBTN_LIBERACION.setEnabled(false);
+                ad.veterinarioJTEXT_LIBERACION.setEnabled(false);
+                ad.veterinarioJTEXT_LIBERACION.setText("");
+                
+                for (TipoAnimal tipoAni : TipoAnimal.values()) {
+                    ad.animalActualJCB_LIBERACION.addItem(tipoAni.toString());
+                }
+                
+                
+                
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
+    String tipoAnimalElegido_LIBERACION = "";
+    final ActionListener avanzarBTN_LIBERACIONaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                
+                ad.avanzarBTN_LIBERACION.setEnabled(false);
+                ad.retrocederBTN_LIBERACION.setEnabled(true);
+                ad.darLiberacionBTN_LIBERACION.setEnabled(true);
+                ad.veterinarioJTEXT_LIBERACION.setEnabled(true);
+                
+                System.out.println(((String)ad.animalActualJCB_LIBERACION.getSelectedItem()).toLowerCase());
+                tipoAnimalElegido_LIBERACION = ((String)ad.animalActualJCB_LIBERACION.getSelectedItem()).toLowerCase();
+                
+                
+                try {
+                    ResultSet rs = db.obtenerListadoModificado(tipoAnimalElegido_LIBERACION);
+                    
+                    
+                    ad.animalActualJCB_LIBERACION.removeAllItems(); // SACADA DE *****, COMO LO MUEVAS DE AQUI SE ROMPE EL PROGRAMA xd
+                    
+                    
+                    while (rs.next()) {
+                        ad.animalActualJCB_LIBERACION.addItem(rs.getString("dni") + ", " + rs.getString("nombre"));
+                    }
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControllerAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                
+                
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
+    final ActionListener darLiberacionBTN_LIBERACIONaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String liberacionStr = (String)ad.animalActualJCB_LIBERACION.getSelectedItem();
+                int indiceComa = liberacionStr.indexOf(",");
+                String liberacionADar = liberacionStr.substring(0, indiceComa);
+                String veterinario = ad.veterinarioJTEXT_LIBERACION.getText();
+                if (veterinario.equalsIgnoreCase("")) {
+                    JOptionPane.showMessageDialog(null, "El nombre del veterinario no puede estar vacío.");
+                    return;
+                }
+                System.out.println(veterinario);
+                
+                try {
+                    db.darLiberacion(liberacionADar, tipoAnimalElegido_LIBERACION, veterinario);
+                    ad.estadoLiberacionLABEL_LIBERACION.setText("ANIMAL DADO EN LIBERTAD CORRECTAMENTE.");
+                } catch (CommunicationsException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
+                } catch (SQLSyntaxErrorException ex) {
+                    JOptionPane.showMessageDialog(null, "ERROR DE SINTAXIS");
+                    System.out.println("Error: " + ex.getMessage());
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
+                    System.out.println("Error: " + ex.getMessage());
+                    System.out.println("Excepcion: " + ex.toString());
+                }
+                
+                
+                ActionEvent evento = new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "");
+
+                retrocederBTN_LIBERACIONaction.actionPerformed(evento);
+                
+                ad.veterinarioJTEXT_LIBERACION.setText("");
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
+    //
+    //
+    // TRATAMIENTOJPANEL --------------------------------------------------------------
+    //
+    //
+    final ActionListener tratamientoBTNaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ad.menuJPANEL.removeAll();
+                ad.menuJPANEL.add(ad.tratamientoJPANEL);
+                
+                
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
             
     public ControllerAdministracion(Administracion ad) {
         this.ad = ad;
@@ -377,6 +490,12 @@ public class ControllerAdministracion {
         ad.avanzarBTN_BAJA.addActionListener(avanzarBTN_BAJAaction);
         ad.darBajaBTN_BAJA.addActionListener(bajaBTN_BAJAaction);
         ad.regresarMenuBTN_BAJA.addActionListener(regresarMenuBTNaction);
+        
+        // LIBERACIONJPANEL
+        ad.retrocederBTN_LIBERACION.addActionListener(retrocederBTN_LIBERACIONaction);
+        ad.avanzarBTN_LIBERACION.addActionListener(avanzarBTN_LIBERACIONaction);
+        ad.darLiberacionBTN_LIBERACION.addActionListener(darLiberacionBTN_LIBERACIONaction);
+        ad.regresarMenuBTN_LIBERACION.addActionListener(regresarMenuBTNaction);
     }
     
     public void reiniciarAlta(){

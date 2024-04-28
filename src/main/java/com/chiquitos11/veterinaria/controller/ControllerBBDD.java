@@ -29,10 +29,21 @@ public class ControllerBBDD {
         ResultSet rs = statement.executeQuery("SELECT * FROM " + tipoAnimal + " WHERE motivoSalida is NULL");
         return rs;
     }
+    
+    public ResultSet obtenerListadoCompleto() throws SQLException {
+        Statement statement = new Conexion().getConnection().createStatement();
+        ResultSet rs = statement.executeQuery("SELECT * FROM ");
+        return rs;
+    }
 
     public void darBaja(String dni, String tipoAnimal, String veterinario) throws SQLException {
         Statement statement = new Conexion().getConnection().createStatement();
         int arows = statement.executeUpdate("UPDATE " + tipoAnimal + " SET fechaSalida=NOW(), motivoSalida='MUERTE', veterinario='" +veterinario+ "' WHERE dni =  '" + dni + "'");
+    }
+    
+    public void darLiberacion(String dni, String tipoAnimal, String veterinario) throws SQLException {
+        Statement statement = new Conexion().getConnection().createStatement();
+        int arows = statement.executeUpdate("UPDATE " + tipoAnimal + " SET fechaSalida=NOW(), motivoSalida='LIBERACION', veterinario='" +veterinario+ "' WHERE dni =  '" + dni + "'");
     }
 
     private void ejecutarDarAlta(Animal animal) throws SQLException {
