@@ -45,6 +45,11 @@ public class ControllerBBDD {
         Statement statement = new Conexion().getConnection().createStatement();
         int arows = statement.executeUpdate("UPDATE " + tipoAnimal + " SET fechaSalida=NOW(), motivoSalida='LIBERACION', veterinario='" +veterinario+ "' WHERE dni =  '" + dni + "'");
     }
+    
+    public void darTratamiento(String dni, String tipoAnimal, String veterinario, String tratamiento) throws SQLException {
+        Statement statement = new Conexion().getConnection().createStatement();
+        int arows = statement.executeUpdate("UPDATE " + tipoAnimal + " SET tratamiento='" +tratamiento+ "', veterinario='" +veterinario+ "' WHERE dni =  '" + dni + "'");
+    }
 
     private void ejecutarDarAlta(Animal animal) throws SQLException {
         if (animal instanceof Mamifero) {

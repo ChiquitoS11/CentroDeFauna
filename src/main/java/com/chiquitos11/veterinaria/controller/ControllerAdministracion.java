@@ -41,20 +41,6 @@ public class ControllerAdministracion {
                 ad.altaIMG.imgToContainer(ad.monitaChinaLABELalta);
             }
     };
-   
-    
-    final ActionListener listadoBTNaction = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ad.menuJPANEL.removeAll();
-                ad.menuJPANEL.add(ad.listadoJPANEL);
-                
-                
-                
-                ad.revalidate(); 
-                ad.repaint(); 
-            }
-    };
     
     final ActionListener salirBTNaction = new ActionListener() {
             @Override
@@ -304,6 +290,7 @@ public class ControllerAdministracion {
                 System.out.println(veterinario);
                 
                 try {
+                    ad.estadoBorradoLABEL_BAJA.setText("ERROR DE ELIMINACION.");
                     db.darBaja(bajaADar, tipoAnimalElegido_BAJA, veterinario);
                     ad.estadoBorradoLABEL_BAJA.setText("DATOS ELIMINADOS EXITOSAMENTE.");
                 } catch (CommunicationsException ex) {
@@ -350,6 +337,7 @@ public class ControllerAdministracion {
             ad.liberacionIMG.imgToContainer(ad.monitaChinaLABEL_LIBERACION);
         }
     };
+    
     final ActionListener retrocederBTN_LIBERACIONaction = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -425,6 +413,7 @@ public class ControllerAdministracion {
                 System.out.println(veterinario);
                 
                 try {
+                    ad.estadoLiberacionLABEL_LIBERACION.setText("ERROR DE LIBERACION.");
                     db.darLiberacion(liberacionADar, tipoAnimalElegido_LIBERACION, veterinario);
                     ad.estadoLiberacionLABEL_LIBERACION.setText("ANIMAL DADO EN LIBERTAD CORRECTAMENTE.");
                 } catch (CommunicationsException ex) {
@@ -454,11 +443,40 @@ public class ControllerAdministracion {
     // TRATAMIENTOJPANEL --------------------------------------------------------------
     //
     //
+    
     final ActionListener tratamientoBTNaction = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ad.menuJPANEL.removeAll();
                 ad.menuJPANEL.add(ad.tratamientoJPANEL);
+                ad.revalidate(); 
+                ad.repaint(); 
+
+                for (TipoAnimal tipoAni : TipoAnimal.values()) {
+                    ad.animalActualJCB_TRATAMIENTO.addItem(tipoAni.toString());
+                }
+
+                ad.tratamientoIMG.imgToContainer(ad.monitaChinaLABEL_TRATAMIENTO);
+            }
+    };
+    
+    final ActionListener retrocederBTN_TRATAMIENTOaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ad.animalActualJCB_TRATAMIENTO.removeAllItems();
+                
+                ad.avanzarBTN_TRATAMIENTO.setEnabled(true);
+                ad.retrocederBTN_TRATAMIENTO.setEnabled(false);
+                ad.darTratamientoBTN_TRATAMIENTO.setEnabled(false);
+                ad.veterinarioJTEXT_TRATAMIENTO.setEnabled(false);
+                ad.veterinarioJTEXT_TRATAMIENTO.setText("");
+                ad.tratamientoJTEXT_TRATAMIENTO.setEnabled(false);
+                ad.tratamientoJTEXT_TRATAMIENTO.setText("");
+                
+                for (TipoAnimal tipoAni : TipoAnimal.values()) {
+                    ad.animalActualJCB_TRATAMIENTO.addItem(tipoAni.toString());
+                }
+                
                 
                 
                 ad.revalidate(); 
@@ -466,6 +484,114 @@ public class ControllerAdministracion {
             }
     };
     
+    String tipoAnimalElegido_TRATAMIENTO = "";
+    final ActionListener avanzarBTN_TRATAMIENTOaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                
+                ad.avanzarBTN_TRATAMIENTO.setEnabled(false);
+                ad.retrocederBTN_TRATAMIENTO.setEnabled(true);
+                ad.darTratamientoBTN_TRATAMIENTO.setEnabled(true);
+                ad.veterinarioJTEXT_TRATAMIENTO.setEnabled(true);
+                ad.tratamientoJTEXT_TRATAMIENTO.setEnabled(true);
+                
+                System.out.println(((String)ad.animalActualJCB_TRATAMIENTO.getSelectedItem()).toLowerCase());
+                tipoAnimalElegido_TRATAMIENTO = ((String)ad.animalActualJCB_TRATAMIENTO.getSelectedItem()).toLowerCase();
+                
+                
+                try {
+                    ResultSet rs = db.obtenerListadoModificado(tipoAnimalElegido_TRATAMIENTO);
+                    
+                    
+                    ad.animalActualJCB_TRATAMIENTO.removeAllItems(); // SACADA DE *****, COMO LO MUEVAS DE AQUI SE ROMPE EL PROGRAMA xd
+                    
+                    
+                    while (rs.next()) {
+                        ad.animalActualJCB_TRATAMIENTO.addItem(rs.getString("dni") + ", " + rs.getString("nombre"));
+                    }
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControllerAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                
+                
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
+    final ActionListener darTratamientoBTN_TRATAMIENTOaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String tratamientoStr = (String)ad.animalActualJCB_TRATAMIENTO.getSelectedItem();
+                int indiceComa = tratamientoStr.indexOf(",");
+                String tratamientoADar = tratamientoStr.substring(0, indiceComa);
+                String veterinario = ad.veterinarioJTEXT_TRATAMIENTO.getText();
+                
+                String tratamiento = ad.tratamientoJTEXT_TRATAMIENTO.getText();
+                
+                if (veterinario.equalsIgnoreCase("")) {
+                    JOptionPane.showMessageDialog(null, "El nombre del veterinario no puede estar vacío.");
+                    return;
+                }
+                if (tratamiento.equalsIgnoreCase("")) {
+                    JOptionPane.showMessageDialog(null, "El tratamiento no puede estar vacío.");
+                    return;
+                }
+                System.out.println(veterinario);
+                
+                try {
+                    ad.estadoTratamientoLABEL_TRATAMIENTO.setText("ERROR DE TRATAMIENTO.");
+                    db.darTratamiento(tratamientoADar, tipoAnimalElegido_TRATAMIENTO, veterinario, tratamiento);
+                    ad.estadoTratamientoLABEL_TRATAMIENTO.setText("TRATAMIENTO DADO CORRECTAMENTE.");
+                } catch (CommunicationsException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
+                } catch (SQLSyntaxErrorException ex) {
+                    JOptionPane.showMessageDialog(null, "ERROR DE SINTAXIS");
+                    System.out.println("Error: " + ex.getMessage());
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
+                    System.out.println("Error: " + ex.getMessage());
+                    System.out.println("Excepcion: " + ex.toString());
+                }
+                
+                
+                ActionEvent evento = new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "");
+
+                retrocederBTN_TRATAMIENTOaction.actionPerformed(evento);
+                
+                ad.veterinarioJTEXT_TRATAMIENTO.setText("");
+                ad.tratamientoJTEXT_TRATAMIENTO.setText("");
+                ad.revalidate(); 
+                ad.repaint(); 
+            }
+    };
+    
+    
+    
+    //
+    //
+    // LISTADOJPANEL --------------------------------------------------------------
+    //
+    //
+    
+    
+    
+    final ActionListener listadoBTNaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ad.menuJPANEL.removeAll();
+                ad.menuJPANEL.add(ad.listadoJPANEL);
+                ad.revalidate();
+                ad.repaint();
+
+                
+            }
+    };
             
     public ControllerAdministracion(Administracion ad) {
         this.ad = ad;
@@ -496,6 +622,12 @@ public class ControllerAdministracion {
         ad.avanzarBTN_LIBERACION.addActionListener(avanzarBTN_LIBERACIONaction);
         ad.darLiberacionBTN_LIBERACION.addActionListener(darLiberacionBTN_LIBERACIONaction);
         ad.regresarMenuBTN_LIBERACION.addActionListener(regresarMenuBTNaction);
+        
+        // TRATAMIENTOJPANEL
+        ad.retrocederBTN_TRATAMIENTO.addActionListener(retrocederBTN_TRATAMIENTOaction);
+        ad.avanzarBTN_TRATAMIENTO.addActionListener(avanzarBTN_TRATAMIENTOaction);
+        ad.darTratamientoBTN_TRATAMIENTO.addActionListener(darTratamientoBTN_TRATAMIENTOaction);
+        ad.regresarMenuBTN_TRATAMIENTO.addActionListener(regresarMenuBTNaction);
     }
     
     public void reiniciarAlta(){

@@ -17,6 +17,7 @@ public class Administracion extends javax.swing.JDialog {
     public UTILImagen altaIMG = new UTILImagen(Main.class.getClassLoader().getResource("inicio.gif"));
     public UTILImagen bajaIMG = new UTILImagen(Main.class.getClassLoader().getResource("monitaChinaLlorando.gif"));
     public UTILImagen liberacionIMG = new UTILImagen(Main.class.getClassLoader().getResource("gatoLiberacion.gif"));
+    public UTILImagen tratamientoIMG = new UTILImagen(Main.class.getClassLoader().getResource("tratamiento.jpg"));
 
     /**
      * Creates new form NewJDialog
@@ -81,6 +82,8 @@ public class Administracion extends javax.swing.JDialog {
         monitaChinaLABEL_TRATAMIENTO = new javax.swing.JLabel();
         darTratamientoBTN_TRATAMIENTO = new javax.swing.JButton();
         regresarMenuBTN_TRATAMIENTO = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tratamientoJTEXT_TRATAMIENTO = new javax.swing.JTextArea();
         liberacionJPANEL = new javax.swing.JPanel();
         darLiberacionBTN_LIBERACION = new javax.swing.JButton();
         regresarMenuBTN_LIBERACION = new javax.swing.JButton();
@@ -400,6 +403,16 @@ public class Administracion extends javax.swing.JDialog {
         });
 
         regresarMenuBTN_TRATAMIENTO.setText("Regresar");
+        regresarMenuBTN_TRATAMIENTO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarMenuBTN_TRATAMIENTOActionPerformed(evt);
+            }
+        });
+
+        tratamientoJTEXT_TRATAMIENTO.setColumns(20);
+        tratamientoJTEXT_TRATAMIENTO.setRows(5);
+        tratamientoJTEXT_TRATAMIENTO.setEnabled(false);
+        jScrollPane1.setViewportView(tratamientoJTEXT_TRATAMIENTO);
 
         javax.swing.GroupLayout tratamientoJPANELLayout = new javax.swing.GroupLayout(tratamientoJPANEL);
         tratamientoJPANEL.setLayout(tratamientoJPANELLayout);
@@ -408,63 +421,70 @@ public class Administracion extends javax.swing.JDialog {
             .addGroup(tratamientoJPANELLayout.createSequentialGroup()
                 .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tratamientoJPANELLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(retrocederBTN_TRATAMIENTO)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(avanzarBTN_TRATAMIENTO)
-                        .addGap(125, 125, 125))
-                    .addGroup(tratamientoJPANELLayout.createSequentialGroup()
                         .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tratamientoJPANELLayout.createSequentialGroup()
-                                .addGap(126, 126, 126)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(estadoTratamientoLABEL_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(mensajeUsuarioLABEL_TRATAMIENTO, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(tratamientoJPANELLayout.createSequentialGroup()
-                                .addGap(192, 192, 192)
-                                .addComponent(animalActualJCB_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(tratamientoJPANELLayout.createSequentialGroup()
-                                .addGap(126, 126, 126)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(veterinarioJTEXT_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(tratamientoJPANELLayout.createSequentialGroup()
-                                .addGap(220, 220, 220)
-                                .addComponent(darTratamientoBTN_TRATAMIENTO)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(monitaChinaLABEL_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tratamientoJPANELLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(regresarMenuBTN_TRATAMIENTO)
-                .addGap(331, 331, 331))
+                                    .addComponent(mensajeUsuarioLABEL_TRATAMIENTO)
+                                    .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(tratamientoJPANELLayout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(veterinarioJTEXT_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(estadoTratamientoLABEL_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tratamientoJPANELLayout.createSequentialGroup()
+                                .addContainerGap(106, Short.MAX_VALUE)
+                                .addComponent(retrocederBTN_TRATAMIENTO)
+                                .addGap(163, 163, 163)
+                                .addComponent(avanzarBTN_TRATAMIENTO)
+                                .addGap(18, 18, 18)))
+                        .addGap(18, 18, 18))
+                    .addGroup(tratamientoJPANELLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(darTratamientoBTN_TRATAMIENTO)
+                        .addGap(18, 18, 18)
+                        .addComponent(regresarMenuBTN_TRATAMIENTO)
+                        .addGap(41, 41, 41)))
+                .addComponent(monitaChinaLABEL_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
+            .addGroup(tratamientoJPANELLayout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(animalActualJCB_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tratamientoJPANELLayout.setVerticalGroup(
             tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tratamientoJPANELLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mensajeUsuarioLABEL_TRATAMIENTO)
-                .addGap(42, 42, 42)
-                .addComponent(animalActualJCB_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(veterinarioJTEXT_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(retrocederBTN_TRATAMIENTO)
-                    .addComponent(avanzarBTN_TRATAMIENTO))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(darTratamientoBTN_TRATAMIENTO)
+                .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tratamientoJPANELLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(mensajeUsuarioLABEL_TRATAMIENTO)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(animalActualJCB_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(veterinarioJTEXT_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(retrocederBTN_TRATAMIENTO)
+                            .addComponent(avanzarBTN_TRATAMIENTO))
+                        .addGroup(tratamientoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tratamientoJPANELLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(darTratamientoBTN_TRATAMIENTO))
+                            .addGroup(tratamientoJPANELLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(regresarMenuBTN_TRATAMIENTO))))
+                    .addGroup(tratamientoJPANELLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(monitaChinaLABEL_TRATAMIENTO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(estadoTratamientoLABEL_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(tratamientoJPANELLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(monitaChinaLABEL_TRATAMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(regresarMenuBTN_TRATAMIENTO)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         liberacionJPANEL.setOpaque(false);
@@ -741,6 +761,10 @@ public class Administracion extends javax.swing.JDialog {
     private void darTratamientoBTN_TRATAMIENTOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darTratamientoBTN_TRATAMIENTOActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_darTratamientoBTN_TRATAMIENTOActionPerformed
+
+    private void regresarMenuBTN_TRATAMIENTOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuBTN_TRATAMIENTOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_regresarMenuBTN_TRATAMIENTOActionPerformed
     
     
     
@@ -794,6 +818,7 @@ public class Administracion extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton liberacionBTN;
     public javax.swing.JPanel liberacionJPANEL;
     public javax.swing.JButton listadoBTN;
@@ -826,6 +851,7 @@ public class Administracion extends javax.swing.JDialog {
     public javax.swing.JButton salirBTN;
     public javax.swing.JButton tratamientoBTN;
     public javax.swing.JPanel tratamientoJPANEL;
+    public javax.swing.JTextArea tratamientoJTEXT_TRATAMIENTO;
     public javax.swing.JTextField veterinarioJTEXT_BAJA;
     public javax.swing.JTextField veterinarioJTEXT_LIBERACION;
     public javax.swing.JTextField veterinarioJTEXT_TRATAMIENTO;

@@ -1,7 +1,10 @@
+com\chiquitos11\veterinaria\view\Administracion$8.class
+com\chiquitos11\veterinaria\controller\ControllerAdministracion$16.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$7.class
 com\chiquitos11\veterinaria\model\Mamifero.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$2.class
+com\chiquitos11\veterinaria\view\Administracion$11.class
 com\chiquitos11\veterinaria\view\Administracion$5.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$13.class
 CentroDeFauna.class
@@ -11,9 +14,11 @@ com\chiquitos11\veterinaria\controller\ControllerAdministracion$4.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$5.class
 com\chiquitos11\veterinaria\view\Veterinaria.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$3.class
+com\chiquitos11\veterinaria\view\Administracion$10.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$10.class
 com\chiquitos11\veterinaria\view\Administracion$2.class
 com\chiquitos11\veterinaria\controller\ControllerBBDD.class
+com\chiquitos11\veterinaria\view\Administracion$9.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$12.class
 com\chiquitos11\veterinaria\model\MamiferoDAO.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$6.class
@@ -28,6 +33,7 @@ com\chiquitos11\veterinaria\controller\ControllerAdministracion$2.class
 com\chiquitos11\veterinaria\model\Animal.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$7.class
 com\chiquitos11\veterinaria\model\ReptilDAO.class
+com\chiquitos11\veterinaria\controller\ControllerAdministracion$18.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$9.class
 com\chiquitos11\veterinaria\enums\Gravedad.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$15.class
@@ -36,7 +42,9 @@ com\chiquitos11\veterinaria\deependency\UTILImagen.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$1.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion.class
 com\chiquitos11\veterinaria\view\Administracion$7.class
+com\chiquitos11\veterinaria\view\Administracion$12.class
 com\chiquitos11\veterinaria\view\Administracion$4.class
+com\chiquitos11\veterinaria\controller\ControllerAdministracion$17.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$5.class
 com\chiquitos11\veterinaria\enums\MotivoSalida.class
 com\chiquitos11\veterinaria\model\Reptil.class
