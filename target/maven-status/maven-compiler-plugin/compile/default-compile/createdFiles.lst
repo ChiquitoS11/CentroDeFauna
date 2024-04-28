@@ -33,6 +33,7 @@ com\chiquitos11\veterinaria\model\Conexion.class
 com\chiquitos11\veterinaria\deependency\UTILImagen.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$1.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion.class
+com\chiquitos11\veterinaria\view\Administracion$7.class
 com\chiquitos11\veterinaria\view\Administracion$4.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$5.class
 com\chiquitos11\veterinaria\enums\MotivoSalida.class

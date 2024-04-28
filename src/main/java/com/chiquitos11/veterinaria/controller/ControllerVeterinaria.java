@@ -89,7 +89,7 @@ public class ControllerVeterinaria {
                 case "enfermera2":
                     
                     System.out.println("enfermera 2");
-                    JOptionPane.showMessageDialog(null, "Rodri es maricon");
+                    JOptionPane.showMessageDialog(null, "Rodri es *******");
                     break;
                     
                 case "enfermera3":

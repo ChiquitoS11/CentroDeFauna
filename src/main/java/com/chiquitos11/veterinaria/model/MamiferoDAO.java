@@ -17,7 +17,7 @@ public class MamiferoDAO {
         int nFil = s.executeUpdate("insert into mamifero(dni, nombre, fechaEntrada, tipoAnimal, peso, gravedad, atropello)"
                 + " values('" + mamifero.getDNI() + "', "
                 + "'" + mamifero.getNombre() + "', "
-                //                                    + "NOW(), "
+//                                                    + "NOW(), "
                 + "'" + mamifero.getFechaEntrada() + "', "
                 + "'" + mamifero.getTipoAnimalSTR() + "', "
                 + "" + mamifero.getPeso() + ", "

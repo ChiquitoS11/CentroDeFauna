@@ -35,6 +35,8 @@ public class ControllerAdministracion {
                 ad.revalidate(); 
                 ad.repaint(); 
                 
+                
+                
                 ad.altaIMG.imgToContainer(ad.monitaChinaLABELalta);
             }
     };
@@ -74,7 +76,8 @@ public class ControllerAdministracion {
                 
                 
                 ad.revalidate(); 
-                ad.repaint(); 
+                ad.repaint();
+                ad.bajaIMG.imgToContainer(ad.liberacionIMG);
             }
     };
     
@@ -238,7 +241,7 @@ public class ControllerAdministracion {
                 ad.animalActualJCB_BAJA.removeAllItems();
                 ad.revalidate(); 
                 ad.repaint();
-
+                
                 
                 for (TipoAnimal tipoAni : TipoAnimal.values()) {
                     ad.animalActualJCB_BAJA.addItem(tipoAni.toString());
@@ -258,6 +261,8 @@ public class ControllerAdministracion {
                 ad.avanzarBTN_BAJA.setEnabled(true);
                 ad.retrocederBTN_BAJA.setEnabled(false);
                 ad.darBajaBTN_BAJA.setEnabled(false);
+                ad.veterinarioJTEXT_BAJA.setEnabled(false);
+                ad.veterinarioJTEXT_BAJA.setText("");
                 
                 for (TipoAnimal tipoAni : TipoAnimal.values()) {
                     ad.animalActualJCB_BAJA.addItem(tipoAni.toString());
@@ -279,13 +284,14 @@ public class ControllerAdministracion {
                 ad.avanzarBTN_BAJA.setEnabled(false);
                 ad.retrocederBTN_BAJA.setEnabled(true);
                 ad.darBajaBTN_BAJA.setEnabled(true);
+                ad.veterinarioJTEXT_BAJA.setEnabled(true);
                 
                 System.out.println(((String)ad.animalActualJCB_BAJA.getSelectedItem()).toLowerCase());
                 tipoAnimalElegido_BAJA = ((String)ad.animalActualJCB_BAJA.getSelectedItem()).toLowerCase();
                 
                 
                 try {
-                    ResultSet rs = db.obtenerListado(tipoAnimalElegido_BAJA);
+                    ResultSet rs = db.obtenerListadoModificado(tipoAnimalElegido_BAJA);
                     
                     
                     ad.animalActualJCB_BAJA.removeAllItems(); // SACADA DE *****, COMO LO MUEVAS DE AQUI SE ROMPE EL PROGRAMA xd
@@ -314,13 +320,21 @@ public class ControllerAdministracion {
                 String bajaStr = (String)ad.animalActualJCB_BAJA.getSelectedItem();
                 int indiceComa = bajaStr.indexOf(",");
                 String bajaADar = bajaStr.substring(0, indiceComa);
-
+                String veterinario = ad.veterinarioJTEXT_BAJA.getText();
+                System.out.println(veterinario);
+                
                 try {
-                    db.darBaja(bajaADar, tipoAnimalElegido_BAJA);
+                    db.darBaja(bajaADar, tipoAnimalElegido_BAJA, veterinario);
                     ad.estadoBorradoLABEL_BAJA.setText("DATOS ELIMINADOS EXITOSAMENTE.");
+                } catch (CommunicationsException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos... Encienda el XAMPP");
+                } catch (SQLSyntaxErrorException ex) {
+                    JOptionPane.showMessageDialog(null, "ERROR DE SINTAXIS");
+                    System.out.println("Error: " + ex.getMessage());
                 } catch (SQLException ex) {
-                    ad.estadoBorradoLABEL_BAJA.setText("ERROR EN LA ELIMINACIÓN DE DATOS.");
-                    Logger.getLogger(ControllerAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
+                    System.out.println("Error: " + ex.getMessage());
+                    System.out.println("Excepcion: " + ex.toString());
                 }
                 
                 
@@ -328,11 +342,17 @@ public class ControllerAdministracion {
 
                 retrocederBTN_BAJAaction.actionPerformed(evento);
                 
+                ad.veterinarioJTEXT_BAJA.setText("");
                 ad.revalidate(); 
                 ad.repaint(); 
             }
     };
-            
+    
+    //
+    //
+    // LIBERACIONJPANEL --------------------------------------------------------------
+    //
+    //
             
     public ControllerAdministracion(Administracion ad) {
         this.ad = ad;
