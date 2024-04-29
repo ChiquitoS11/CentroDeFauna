@@ -449,6 +449,7 @@ public class ControllerAdministracion {
             public void actionPerformed(ActionEvent e) {
                 ad.menuJPANEL.removeAll();
                 ad.menuJPANEL.add(ad.tratamientoJPANEL);
+                ad.animalActualJCB_TRATAMIENTO.removeAllItems();
                 ad.revalidate(); 
                 ad.repaint(); 
 
@@ -584,6 +585,7 @@ public class ControllerAdministracion {
             public void actionPerformed(ActionEvent e) {
                 ad.menuJPANEL.removeAll();
                 ad.menuJPANEL.add(ad.listadoJPANEL);
+                ad.animalActualJCB_LISTADO.removeAllItems();
                 ad.revalidate();
                 ad.repaint();
 
