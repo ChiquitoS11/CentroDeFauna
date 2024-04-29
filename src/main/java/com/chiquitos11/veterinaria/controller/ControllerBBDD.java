@@ -30,9 +30,9 @@ public class ControllerBBDD {
         return rs;
     }
     
-    public ResultSet obtenerListadoCompleto() throws SQLException {
+    public ResultSet obtenerListadoPorAnimal(String tipoAnimal) throws SQLException {
         Statement statement = new Conexion().getConnection().createStatement();
-        ResultSet rs = statement.executeQuery("SELECT * FROM ");
+        ResultSet rs = statement.executeQuery("SELECT * FROM " + tipoAnimal);
         return rs;
     }
 

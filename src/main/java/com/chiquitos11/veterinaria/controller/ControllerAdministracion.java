@@ -128,7 +128,7 @@ public class ControllerAdministracion {
                         } catch (SQLIntegrityConstraintViolationException ex) {
                            JOptionPane.showMessageDialog(null, "Un animal ya ha sido registrado con ese DNI, verifique los datos.");
                         } catch (SQLSyntaxErrorException ex) {
-                           JOptionPane.showMessageDialog(null, "No se creo la base ded datos con el nombre 'veterinaria'");
+                           JOptionPane.showMessageDialog(null, "ERROR DE SINTAXIS");
                         } catch (SQLException ex) {
                            JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
                            System.out.println("Error: " + ex.getMessage());
@@ -151,7 +151,7 @@ public class ControllerAdministracion {
                         } catch (SQLIntegrityConstraintViolationException ex) {
                            JOptionPane.showMessageDialog(null, "Un animal ya ha sido registrado con ese DNI, verifique los datos.");
                         } catch (SQLSyntaxErrorException ex) {
-                           JOptionPane.showMessageDialog(null, "No se creo la base ded datos con el nombre 'veterinaria'");
+                           JOptionPane.showMessageDialog(null, "ERROR DE SINTAXIS");
                         } catch (SQLException ex) {
                            JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
                            System.out.println("Error: " + ex.getMessage());
@@ -579,8 +579,6 @@ public class ControllerAdministracion {
     //
     //
     
-    
-    
     final ActionListener listadoBTNaction = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -589,10 +587,62 @@ public class ControllerAdministracion {
                 ad.revalidate();
                 ad.repaint();
 
-                
+                for (TipoAnimal tipoAni : TipoAnimal.values()) {
+                    ad.animalActualJCB_LISTADO.addItem(tipoAni.toString());
+                }
+
+                ad.listadoIMG.imgToContainer(ad.monitaChinaLABEL_LISTADO);
             }
     };
-            
+    
+    final ActionListener darListadoBTN_LISTADOaction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("entroLISTADO");
+                try {
+                    String animalActual = ((String)ad.animalActualJCB_LISTADO.getSelectedItem()).toLowerCase();
+                    ResultSet rs = db.obtenerListadoPorAnimal(animalActual);
+                    
+                    
+                    ad.listadoJTEXT_LISTADO.setText(""); // SACADA DE *****, COMO LO MUEVAS DE AQUI SE ROMPE EL PROGRAMA xd
+                    
+                    StringBuilder todo = new StringBuilder();
+                    while (rs.next()) {
+                        todo.append("\n\nDNI: ").append(rs.getString("dni"))
+                                .append("\nNombre: ").append(rs.getString("nombre"))
+                                .append("\nTratamiento: ").append(rs.getString("tratamiento"))
+                                .append("\nFecha de Entrada: ").append(rs.getDate("fechaEntrada"))
+                                .append("\nTipo de Animal: ").append(rs.getString("tipoAnimal"))
+                                .append("\nPeso: ").append(rs.getDouble("peso"))
+                                .append("\nGravedad: ").append(rs.getString("gravedad"))
+                                .append("\nFecha de Salida: ").append(rs.getDate("fechaSalida"))
+                                .append("\nMotivo de Salida: ").append(rs.getString("motivoSalida"))
+                                .append("\nVeterinario: ").append(rs.getString("veterinario"));
+                        switch (animalActual) {
+                            case "ave":
+                                todo.append("\nCaza Furtiva? ").append(rs.getBoolean("cazaFurtiva"));
+                                break;
+                                
+                            case "mamifero":
+                                todo.append("\nAtropello? ").append(rs.getBoolean("atropello"));
+                                break;
+                                
+                            case "reptil":
+                                todo.append("\nInfeccion Bacteriana? ").append(rs.getBoolean("infeccionBacteriana"));
+                                break;
+                        }
+                    }
+                    ad.listadoJTEXT_LISTADO.setText(todo.toString());
+                    
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error desconocido, intentelo más tarde.");
+                    System.out.println("Error: " + ex.getMessage());
+                    System.out.println("Excepcion: " + ex.toString());
+                }
+            }
+    };
+
+
     public ControllerAdministracion(Administracion ad) {
         this.ad = ad;
         db = new ControllerBBDD();
@@ -628,6 +678,10 @@ public class ControllerAdministracion {
         ad.avanzarBTN_TRATAMIENTO.addActionListener(avanzarBTN_TRATAMIENTOaction);
         ad.darTratamientoBTN_TRATAMIENTO.addActionListener(darTratamientoBTN_TRATAMIENTOaction);
         ad.regresarMenuBTN_TRATAMIENTO.addActionListener(regresarMenuBTNaction);
+        
+        // TRATAMIENTOJPANEL
+        ad.darListadoBTN_LISTADO.addActionListener(darListadoBTN_LISTADOaction);
+        ad.regresarMenuBTN_LISTADO.addActionListener(regresarMenuBTNaction);
     }
     
     public void reiniciarAlta(){

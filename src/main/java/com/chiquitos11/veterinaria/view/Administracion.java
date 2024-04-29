@@ -18,6 +18,7 @@ public class Administracion extends javax.swing.JDialog {
     public UTILImagen bajaIMG = new UTILImagen(Main.class.getClassLoader().getResource("monitaChinaLlorando.gif"));
     public UTILImagen liberacionIMG = new UTILImagen(Main.class.getClassLoader().getResource("gatoLiberacion.gif"));
     public UTILImagen tratamientoIMG = new UTILImagen(Main.class.getClassLoader().getResource("tratamiento.jpg"));
+    public UTILImagen listadoIMG = new UTILImagen(Main.class.getClassLoader().getResource("estudiandoLISTADO.gif"));
 
     /**
      * Creates new form NewJDialog
@@ -96,6 +97,13 @@ public class Administracion extends javax.swing.JDialog {
         avanzarBTN_LIBERACION = new javax.swing.JButton();
         monitaChinaLABEL_LIBERACION = new javax.swing.JLabel();
         listadoJPANEL = new javax.swing.JPanel();
+        animalActualJCB_LISTADO = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listadoJTEXT_LISTADO = new javax.swing.JTextArea();
+        regresarMenuBTN_LISTADO = new javax.swing.JButton();
+        monitaChinaLABEL_LISTADO = new javax.swing.JLabel();
+        mensajeUsuarioLABEL_LISTADO = new javax.swing.JLabel();
+        darListadoBTN_LISTADO = new javax.swing.JButton();
         logoLABEL = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -582,15 +590,83 @@ public class Administracion extends javax.swing.JDialog {
 
         listadoJPANEL.setOpaque(false);
 
+        animalActualJCB_LISTADO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                animalActualJCB_LISTADOActionPerformed(evt);
+            }
+        });
+
+        listadoJTEXT_LISTADO.setEditable(false);
+        listadoJTEXT_LISTADO.setColumns(20);
+        listadoJTEXT_LISTADO.setFont(new java.awt.Font("Cascadia Code", 0, 12)); // NOI18N
+        listadoJTEXT_LISTADO.setForeground(new java.awt.Color(0, 0, 0));
+        listadoJTEXT_LISTADO.setRows(5);
+        jScrollPane2.setViewportView(listadoJTEXT_LISTADO);
+
+        regresarMenuBTN_LISTADO.setText("Regresar");
+        regresarMenuBTN_LISTADO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarMenuBTN_LISTADOActionPerformed(evt);
+            }
+        });
+
+        mensajeUsuarioLABEL_LISTADO.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        mensajeUsuarioLABEL_LISTADO.setForeground(new java.awt.Color(0, 0, 0));
+        mensajeUsuarioLABEL_LISTADO.setText("MOSTAR LISTADO DE LOS ANIMALES");
+
+        darListadoBTN_LISTADO.setText("Listar Animales");
+        darListadoBTN_LISTADO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                darListadoBTN_LISTADOActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout listadoJPANELLayout = new javax.swing.GroupLayout(listadoJPANEL);
         listadoJPANEL.setLayout(listadoJPANELLayout);
         listadoJPANELLayout.setHorizontalGroup(
             listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 858, Short.MAX_VALUE)
+            .addGroup(listadoJPANELLayout.createSequentialGroup()
+                .addGroup(listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(listadoJPANELLayout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(mensajeUsuarioLABEL_LISTADO)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(listadoJPANELLayout.createSequentialGroup()
+                        .addContainerGap(132, Short.MAX_VALUE)
+                        .addGroup(listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listadoJPANELLayout.createSequentialGroup()
+                                .addComponent(animalActualJCB_LISTADO, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(180, 180, 180))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listadoJPANELLayout.createSequentialGroup()
+                                .addGroup(listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(listadoJPANELLayout.createSequentialGroup()
+                                        .addComponent(darListadoBTN_LISTADO)
+                                        .addGap(85, 85, 85)
+                                        .addComponent(regresarMenuBTN_LISTADO))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)))
+                        .addComponent(monitaChinaLABEL_LISTADO, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         listadoJPANELLayout.setVerticalGroup(
             listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGroup(listadoJPANELLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(listadoJPANELLayout.createSequentialGroup()
+                        .addComponent(mensajeUsuarioLABEL_LISTADO)
+                        .addGap(12, 12, 12)
+                        .addComponent(animalActualJCB_LISTADO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+                    .addGroup(listadoJPANELLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(monitaChinaLABEL_LISTADO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(listadoJPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regresarMenuBTN_LISTADO)
+                    .addComponent(darListadoBTN_LISTADO))
+                .addGap(36, 36, 36))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -765,6 +841,18 @@ public class Administracion extends javax.swing.JDialog {
     private void regresarMenuBTN_TRATAMIENTOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuBTN_TRATAMIENTOActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_regresarMenuBTN_TRATAMIENTOActionPerformed
+
+    private void animalActualJCB_LISTADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animalActualJCB_LISTADOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_animalActualJCB_LISTADOActionPerformed
+
+    private void regresarMenuBTN_LISTADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuBTN_LISTADOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_regresarMenuBTN_LISTADOActionPerformed
+
+    private void darListadoBTN_LISTADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darListadoBTN_LISTADOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_darListadoBTN_LISTADOActionPerformed
     
     
     
@@ -793,6 +881,7 @@ public class Administracion extends javax.swing.JDialog {
     public javax.swing.JPanel altaJPANEL;
     public javax.swing.JComboBox<String> animalActualJCB_BAJA;
     public javax.swing.JComboBox<String> animalActualJCB_LIBERACION;
+    public javax.swing.JComboBox<String> animalActualJCB_LISTADO;
     public javax.swing.JComboBox<String> animalActualJCB_TRATAMIENTO;
     public javax.swing.JButton avanzarBTN_BAJA;
     public javax.swing.JButton avanzarBTN_LIBERACION;
@@ -801,6 +890,7 @@ public class Administracion extends javax.swing.JDialog {
     public javax.swing.JPanel bajaJPANEL;
     public javax.swing.JButton darBajaBTN_BAJA;
     public javax.swing.JButton darLiberacionBTN_LIBERACION;
+    public javax.swing.JButton darListadoBTN_LISTADO;
     public javax.swing.JButton darTratamientoBTN_TRATAMIENTO;
     private javax.swing.JLabel dniLABEL;
     public javax.swing.JTextField dniTEXTFIELD;
@@ -819,19 +909,23 @@ public class Administracion extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JButton liberacionBTN;
     public javax.swing.JPanel liberacionJPANEL;
     public javax.swing.JButton listadoBTN;
     public javax.swing.JPanel listadoJPANEL;
+    public javax.swing.JTextArea listadoJTEXT_LISTADO;
     private javax.swing.JLabel logoLABEL;
     private javax.swing.JLabel mensajeFechaLABEL;
     private javax.swing.JLabel mensajeUsuarioLABEL_BAJA;
     private javax.swing.JLabel mensajeUsuarioLABEL_LIBERACION;
+    private javax.swing.JLabel mensajeUsuarioLABEL_LISTADO;
     private javax.swing.JLabel mensajeUsuarioLABEL_TRATAMIENTO;
     public javax.swing.JPanel menuJPANEL;
     private javax.swing.JLabel menuMonitaLABEL;
     public javax.swing.JLabel monitaChinaLABEL_BAJA;
     public javax.swing.JLabel monitaChinaLABEL_LIBERACION;
+    public javax.swing.JLabel monitaChinaLABEL_LISTADO;
     public javax.swing.JLabel monitaChinaLABEL_TRATAMIENTO;
     public javax.swing.JLabel monitaChinaLABELalta;
     public javax.swing.JCheckBox motivoLesionJCHECK_ALTA;
@@ -844,6 +938,7 @@ public class Administracion extends javax.swing.JDialog {
     public javax.swing.JButton regresarMenuBTN_ALTA;
     public javax.swing.JButton regresarMenuBTN_BAJA;
     public javax.swing.JButton regresarMenuBTN_LIBERACION;
+    public javax.swing.JButton regresarMenuBTN_LISTADO;
     public javax.swing.JButton regresarMenuBTN_TRATAMIENTO;
     public javax.swing.JButton retrocederBTN_BAJA;
     public javax.swing.JButton retrocederBTN_LIBERACION;

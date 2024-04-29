@@ -22,16 +22,19 @@ com\chiquitos11\veterinaria\view\Administracion$9.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$12.class
 com\chiquitos11\veterinaria\model\MamiferoDAO.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$6.class
+com\chiquitos11\veterinaria\controller\ControllerAdministracion$19.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$6.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$3.class
 com\chiquitos11\veterinaria\view\Administracion$6.class
 CentroDeFauna$1.class
+com\chiquitos11\veterinaria\view\Administracion$14.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$4.class
 com\chiquitos11\veterinaria\enums\TipoAnimal.class
 com\chiquitos11\veterinaria\view\Administracion$3.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$2.class
 com\chiquitos11\veterinaria\model\Animal.class
 com\chiquitos11\veterinaria\controller\ControllerVeterinaria$7.class
+com\chiquitos11\veterinaria\view\Administracion$13.class
 com\chiquitos11\veterinaria\model\ReptilDAO.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$18.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$9.class
@@ -43,6 +46,7 @@ com\chiquitos11\veterinaria\controller\ControllerAdministracion$1.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion.class
 com\chiquitos11\veterinaria\view\Administracion$7.class
 com\chiquitos11\veterinaria\view\Administracion$12.class
+com\chiquitos11\veterinaria\view\Administracion$15.class
 com\chiquitos11\veterinaria\view\Administracion$4.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$17.class
 com\chiquitos11\veterinaria\controller\ControllerAdministracion$5.class
